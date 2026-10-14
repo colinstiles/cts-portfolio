@@ -18,6 +18,14 @@
             padding: 40px 18px 56px;
         }
 
+
+        .gallery-header { margin-bottom: 28px; }
+        .gallery-header h1 { margin: 8px 0 16px; font-size: 32px; }
+        .gallery-back { color: #374054; font-size: 14px; }
+        .gallery-filters { display: flex; flex-wrap: wrap; gap: 8px; }
+        .gallery-filters a { padding: 6px 14px; border-radius: 999px; background: #fff; color: #374054; font-size: 14px; box-shadow: 0 2px 8px rgba(55, 64, 84, 0.1); text-decoration: none; }
+        .gallery-filters a.active { background: #374054; color: #fff; }
+
         .gallery-grid {
             display: grid;
             grid-template-columns: repeat(12, minmax(0, 1fr));
@@ -111,189 +119,216 @@
 </head>
 <body>
     <main class="gallery-shell">
-        <div class="gallery-grid">
-            <article class="gallery-item gallery-item--wide">
+    <header class="gallery-header">
+        <a class="gallery-back" href="index.html#projects">&larr; Back to portfolio</a>
+        <h1>Map Gallery</h1>
+        <nav class="gallery-filters" aria-label="Map collections">
+            <a href="map-gallery.html" data-filter="all">All Maps</a>
+            <a href="map-gallery.html?collection=state-forests" data-filter="state-forests">State Forest Public Use Maps</a>
+            <a href="map-gallery.html?collection=remote-sensing" data-filter="remote-sensing">Remote Sensing - Clearwater, Idaho</a>
+            <a href="map-gallery.html?collection=ogallala" data-filter="ogallala">Ogallala Aquifer Groundwater Analysis</a>
+            <a href="map-gallery.html?collection=philippines" data-filter="philippines">Philippines Geohazard Assessment</a>
+            <a href="map-gallery.html?collection=forestry-planning" data-filter="forestry-planning">Forestry Site Planning & Viewshed</a>
+            <a href="map-gallery.html?collection=terrain-hydrology" data-filter="terrain-hydrology">Terrain, Hydrology & Solar Shading</a>
+        </nav>
+    </header>
+    <div class="gallery-grid">
+            <article class="gallery-item gallery-item--wide" data-collection="terrain-hydrology">
                 <div class="gallery-card">
-                    <a href="images/maps/map51.png" target="_blank" rel="noopener noreferrer">
-                        <div class="gallery-frame"><img src="images/maps/map51.png" alt="Map 51"></div>
+                    <a href="images/maps/large/map51.jpg" target="_blank" rel="noopener noreferrer">
+                        <div class="gallery-frame"><img src="images/maps/thumbs/map51.jpg" width="695" height="900" loading="lazy" decoding="async" alt="Map 51"></div>
                     </a>
                 </div>
             </article>
-            <article class="gallery-item gallery-item--wide gallery-item--stagger">
+            <article class="gallery-item gallery-item--wide gallery-item--stagger" data-collection="terrain-hydrology">
                 <div class="gallery-card">
-                    <a href="images/maps/map52.png" target="_blank" rel="noopener noreferrer">
-                        <div class="gallery-frame"><img src="images/maps/map52.png" alt="Map 52"></div>
+                    <a href="images/maps/large/map52.jpg" target="_blank" rel="noopener noreferrer">
+                        <div class="gallery-frame"><img src="images/maps/thumbs/map52.jpg" width="695" height="900" loading="lazy" decoding="async" alt="Map 52"></div>
                     </a>
                 </div>
             </article>
-            <article class="gallery-item gallery-item--wide">
+            <article class="gallery-item gallery-item--wide" data-collection="terrain-hydrology">
                 <div class="gallery-card">
-                    <a href="images/maps/map53.png" target="_blank" rel="noopener noreferrer">
-                        <div class="gallery-frame"><img src="images/maps/map53.png" alt="Map 53"></div>
+                    <a href="images/maps/large/map53.jpg" target="_blank" rel="noopener noreferrer">
+                        <div class="gallery-frame"><img src="images/maps/thumbs/map53.jpg" width="900" height="695" loading="lazy" decoding="async" alt="Map 53"></div>
                     </a>
                 </div>
             </article>
-            <article class="gallery-item gallery-item--wide gallery-item--stagger">
+            <article class="gallery-item gallery-item--wide gallery-item--stagger" data-collection="terrain-hydrology">
                 <div class="gallery-card">
-                    <a href="images/maps/map54.png" target="_blank" rel="noopener noreferrer">
-                        <div class="gallery-frame"><img src="images/maps/map54.png" alt="Map 54"></div>
+                    <a href="images/maps/large/map54.jpg" target="_blank" rel="noopener noreferrer">
+                        <div class="gallery-frame"><img src="images/maps/thumbs/map54.jpg" width="900" height="695" loading="lazy" decoding="async" alt="Map 54"></div>
                     </a>
                 </div>
             </article>
 
-            <article class="gallery-item">
-                <div class="gallery-card"><a href="images/maps/map1.png" target="_blank" rel="noopener noreferrer"><div class="gallery-frame"><img src="images/maps/map1.png" alt="Map 1"></div></a></div>
+            <article class="gallery-item" data-collection="state-forests">
+                <div class="gallery-card"><a href="images/maps/large/map1.jpg" target="_blank" rel="noopener noreferrer"><div class="gallery-frame"><img src="images/maps/thumbs/map1.jpg" width="900" height="695" loading="lazy" decoding="async" alt="Map 1"></div></a></div>
             </article>
-            <article class="gallery-item gallery-item--stagger">
-                <div class="gallery-card"><a href="images/maps/map2.png" target="_blank" rel="noopener noreferrer"><div class="gallery-frame"><img src="images/maps/map2.png" alt="Map 2"></div></a></div>
+            <article class="gallery-item gallery-item--stagger" data-collection="state-forests">
+                <div class="gallery-card"><a href="images/maps/large/map2.jpg" target="_blank" rel="noopener noreferrer"><div class="gallery-frame"><img src="images/maps/thumbs/map2.jpg" width="900" height="582" loading="lazy" decoding="async" alt="Map 2"></div></a></div>
             </article>
-            <article class="gallery-item">
-                <div class="gallery-card"><a href="images/maps/map3.png" target="_blank" rel="noopener noreferrer"><div class="gallery-frame"><img src="images/maps/map3.png" alt="Map 3"></div></a></div>
+            <article class="gallery-item" data-collection="state-forests">
+                <div class="gallery-card"><a href="images/maps/large/map3.jpg" target="_blank" rel="noopener noreferrer"><div class="gallery-frame"><img src="images/maps/thumbs/map3.jpg" width="582" height="900" loading="lazy" decoding="async" alt="Map 3"></div></a></div>
             </article>
-            <article class="gallery-item gallery-item--stagger">
-                <div class="gallery-card"><a href="images/maps/map4.png" target="_blank" rel="noopener noreferrer"><div class="gallery-frame"><img src="images/maps/map4.png" alt="Map 4"></div></a></div>
+            <article class="gallery-item gallery-item--stagger" data-collection="state-forests">
+                <div class="gallery-card"><a href="images/maps/large/map4.jpg" target="_blank" rel="noopener noreferrer"><div class="gallery-frame"><img src="images/maps/thumbs/map4.jpg" width="900" height="582" loading="lazy" decoding="async" alt="Map 4"></div></a></div>
             </article>
-            <article class="gallery-item">
-                <div class="gallery-card"><a href="images/maps/map5.png" target="_blank" rel="noopener noreferrer"><div class="gallery-frame"><img src="images/maps/map5.png" alt="Map 5"></div></a></div>
+            <article class="gallery-item" data-collection="remote-sensing">
+                <div class="gallery-card"><a href="images/maps/large/map5.jpg" target="_blank" rel="noopener noreferrer"><div class="gallery-frame"><img src="images/maps/thumbs/map5.jpg" width="900" height="696" loading="lazy" decoding="async" alt="Map 5"></div></a></div>
             </article>
-            <article class="gallery-item gallery-item--stagger">
-                <div class="gallery-card"><a href="images/maps/map6.png" target="_blank" rel="noopener noreferrer"><div class="gallery-frame"><img src="images/maps/map6.png" alt="Map 6"></div></a></div>
+            <article class="gallery-item gallery-item--stagger" data-collection="remote-sensing">
+                <div class="gallery-card"><a href="images/maps/large/map6.jpg" target="_blank" rel="noopener noreferrer"><div class="gallery-frame"><img src="images/maps/thumbs/map6.jpg" width="900" height="693" loading="lazy" decoding="async" alt="Map 6"></div></a></div>
             </article>
-            <article class="gallery-item">
-                <div class="gallery-card"><a href="images/maps/map7.png" target="_blank" rel="noopener noreferrer"><div class="gallery-frame"><img src="images/maps/map7.png" alt="Map 7"></div></a></div>
+            <article class="gallery-item" data-collection="remote-sensing">
+                <div class="gallery-card"><a href="images/maps/large/map7.jpg" target="_blank" rel="noopener noreferrer"><div class="gallery-frame"><img src="images/maps/thumbs/map7.jpg" width="900" height="695" loading="lazy" decoding="async" alt="Map 7"></div></a></div>
             </article>
-            <article class="gallery-item gallery-item--stagger">
-                <div class="gallery-card"><a href="images/maps/map8.png" target="_blank" rel="noopener noreferrer"><div class="gallery-frame"><img src="images/maps/map8.png" alt="Map 8"></div></a></div>
+            <article class="gallery-item gallery-item--stagger" data-collection="ogallala">
+                <div class="gallery-card"><a href="images/maps/large/map8.jpg" target="_blank" rel="noopener noreferrer"><div class="gallery-frame"><img src="images/maps/thumbs/map8.jpg" width="900" height="582" loading="lazy" decoding="async" alt="Map 8"></div></a></div>
             </article>
-            <article class="gallery-item">
-                <div class="gallery-card"><a href="images/maps/map9.png" target="_blank" rel="noopener noreferrer"><div class="gallery-frame"><img src="images/maps/map9.png" alt="Map 9"></div></a></div>
+            <article class="gallery-item" data-collection="ogallala">
+                <div class="gallery-card"><a href="images/maps/large/map9.jpg" target="_blank" rel="noopener noreferrer"><div class="gallery-frame"><img src="images/maps/thumbs/map9.jpg" width="900" height="582" loading="lazy" decoding="async" alt="Map 9"></div></a></div>
             </article>
-            <article class="gallery-item gallery-item--stagger">
-                <div class="gallery-card"><a href="images/maps/map10.png" target="_blank" rel="noopener noreferrer"><div class="gallery-frame"><img src="images/maps/map10.png" alt="Map 10"></div></a></div>
+            <article class="gallery-item gallery-item--stagger" data-collection="ogallala">
+                <div class="gallery-card"><a href="images/maps/large/map10.jpg" target="_blank" rel="noopener noreferrer"><div class="gallery-frame"><img src="images/maps/thumbs/map10.jpg" width="900" height="582" loading="lazy" decoding="async" alt="Map 10"></div></a></div>
             </article>
-            <article class="gallery-item">
-                <div class="gallery-card"><a href="images/maps/map11.png" target="_blank" rel="noopener noreferrer"><div class="gallery-frame"><img src="images/maps/map11.png" alt="Map 11"></div></a></div>
+            <article class="gallery-item" data-collection="ogallala">
+                <div class="gallery-card"><a href="images/maps/large/map11.jpg" target="_blank" rel="noopener noreferrer"><div class="gallery-frame"><img src="images/maps/thumbs/map11.jpg" width="900" height="582" loading="lazy" decoding="async" alt="Map 11"></div></a></div>
             </article>
-            <article class="gallery-item gallery-item--stagger">
-                <div class="gallery-card"><a href="images/maps/map12.png" target="_blank" rel="noopener noreferrer"><div class="gallery-frame"><img src="images/maps/map12.png" alt="Map 12"></div></a></div>
+            <article class="gallery-item gallery-item--stagger" data-collection="ogallala">
+                <div class="gallery-card"><a href="images/maps/large/map12.jpg" target="_blank" rel="noopener noreferrer"><div class="gallery-frame"><img src="images/maps/thumbs/map12.jpg" width="900" height="582" loading="lazy" decoding="async" alt="Map 12"></div></a></div>
             </article>
-            <article class="gallery-item">
-                <div class="gallery-card"><a href="images/maps/map13.png" target="_blank" rel="noopener noreferrer"><div class="gallery-frame"><img src="images/maps/map13.png" alt="Map 13"></div></a></div>
+            <article class="gallery-item" data-collection="ogallala">
+                <div class="gallery-card"><a href="images/maps/large/map13.jpg" target="_blank" rel="noopener noreferrer"><div class="gallery-frame"><img src="images/maps/thumbs/map13.jpg" width="900" height="582" loading="lazy" decoding="async" alt="Map 13"></div></a></div>
             </article>
-            <article class="gallery-item gallery-item--stagger">
-                <div class="gallery-card"><a href="images/maps/map14.png" target="_blank" rel="noopener noreferrer"><div class="gallery-frame"><img src="images/maps/map14.png" alt="Map 14"></div></a></div>
+            <article class="gallery-item gallery-item--stagger" data-collection="ogallala">
+                <div class="gallery-card"><a href="images/maps/large/map14.jpg" target="_blank" rel="noopener noreferrer"><div class="gallery-frame"><img src="images/maps/thumbs/map14.jpg" width="900" height="582" loading="lazy" decoding="async" alt="Map 14"></div></a></div>
             </article>
-            <article class="gallery-item">
-                <div class="gallery-card"><a href="images/maps/map15.png" target="_blank" rel="noopener noreferrer"><div class="gallery-frame"><img src="images/maps/map15.png" alt="Map 15"></div></a></div>
+            <article class="gallery-item" data-collection="ogallala">
+                <div class="gallery-card"><a href="images/maps/large/map15.jpg" target="_blank" rel="noopener noreferrer"><div class="gallery-frame"><img src="images/maps/thumbs/map15.jpg" width="900" height="582" loading="lazy" decoding="async" alt="Map 15"></div></a></div>
             </article>
-            <article class="gallery-item gallery-item--stagger">
-                <div class="gallery-card"><a href="images/maps/map16.png" target="_blank" rel="noopener noreferrer"><div class="gallery-frame"><img src="images/maps/map16.png" alt="Map 16"></div></a></div>
+            <article class="gallery-item gallery-item--stagger" data-collection="ogallala">
+                <div class="gallery-card"><a href="images/maps/large/map16.jpg" target="_blank" rel="noopener noreferrer"><div class="gallery-frame"><img src="images/maps/thumbs/map16.jpg" width="900" height="582" loading="lazy" decoding="async" alt="Map 16"></div></a></div>
             </article>
-            <article class="gallery-item">
-                <div class="gallery-card"><a href="images/maps/map17.png" target="_blank" rel="noopener noreferrer"><div class="gallery-frame"><img src="images/maps/map17.png" alt="Map 17"></div></a></div>
+            <article class="gallery-item" data-collection="ogallala">
+                <div class="gallery-card"><a href="images/maps/large/map17.jpg" target="_blank" rel="noopener noreferrer"><div class="gallery-frame"><img src="images/maps/thumbs/map17.jpg" width="900" height="582" loading="lazy" decoding="async" alt="Map 17"></div></a></div>
             </article>
-            <article class="gallery-item gallery-item--stagger">
-                <div class="gallery-card"><a href="images/maps/map18.png" target="_blank" rel="noopener noreferrer"><div class="gallery-frame"><img src="images/maps/map18.png" alt="Map 18"></div></a></div>
+            <article class="gallery-item gallery-item--stagger" data-collection="ogallala">
+                <div class="gallery-card"><a href="images/maps/large/map18.jpg" target="_blank" rel="noopener noreferrer"><div class="gallery-frame"><img src="images/maps/thumbs/map18.jpg" width="900" height="582" loading="lazy" decoding="async" alt="Map 18"></div></a></div>
             </article>
-            <article class="gallery-item">
-                <div class="gallery-card"><a href="images/maps/map19.png" target="_blank" rel="noopener noreferrer"><div class="gallery-frame"><img src="images/maps/map19.png" alt="Map 19"></div></a></div>
+            <article class="gallery-item" data-collection="ogallala">
+                <div class="gallery-card"><a href="images/maps/large/map19.jpg" target="_blank" rel="noopener noreferrer"><div class="gallery-frame"><img src="images/maps/thumbs/map19.jpg" width="900" height="582" loading="lazy" decoding="async" alt="Map 19"></div></a></div>
             </article>
-            <article class="gallery-item gallery-item--stagger">
-                <div class="gallery-card"><a href="images/maps/map20.png" target="_blank" rel="noopener noreferrer"><div class="gallery-frame"><img src="images/maps/map20.png" alt="Map 20"></div></a></div>
+            <article class="gallery-item gallery-item--stagger" data-collection="ogallala">
+                <div class="gallery-card"><a href="images/maps/large/map20.jpg" target="_blank" rel="noopener noreferrer"><div class="gallery-frame"><img src="images/maps/thumbs/map20.jpg" width="900" height="582" loading="lazy" decoding="async" alt="Map 20"></div></a></div>
             </article>
-            <article class="gallery-item">
-                <div class="gallery-card"><a href="images/maps/map21.png" target="_blank" rel="noopener noreferrer"><div class="gallery-frame"><img src="images/maps/map21.png" alt="Map 21"></div></a></div>
+            <article class="gallery-item" data-collection="ogallala">
+                <div class="gallery-card"><a href="images/maps/large/map21.jpg" target="_blank" rel="noopener noreferrer"><div class="gallery-frame"><img src="images/maps/thumbs/map21.jpg" width="900" height="582" loading="lazy" decoding="async" alt="Map 21"></div></a></div>
             </article>
-            <article class="gallery-item gallery-item--stagger">
-                <div class="gallery-card"><a href="images/maps/map22.png" target="_blank" rel="noopener noreferrer"><div class="gallery-frame"><img src="images/maps/map22.png" alt="Map 22"></div></a></div>
+            <article class="gallery-item gallery-item--stagger" data-collection="ogallala">
+                <div class="gallery-card"><a href="images/maps/large/map22.jpg" target="_blank" rel="noopener noreferrer"><div class="gallery-frame"><img src="images/maps/thumbs/map22.jpg" width="900" height="582" loading="lazy" decoding="async" alt="Map 22"></div></a></div>
             </article>
-            <article class="gallery-item">
-                <div class="gallery-card"><a href="images/maps/map23.png" target="_blank" rel="noopener noreferrer"><div class="gallery-frame"><img src="images/maps/map23.png" alt="Map 23"></div></a></div>
+            <article class="gallery-item" data-collection="ogallala">
+                <div class="gallery-card"><a href="images/maps/large/map23.jpg" target="_blank" rel="noopener noreferrer"><div class="gallery-frame"><img src="images/maps/thumbs/map23.jpg" width="900" height="582" loading="lazy" decoding="async" alt="Map 23"></div></a></div>
             </article>
-            <article class="gallery-item gallery-item--stagger">
-                <div class="gallery-card"><a href="images/maps/map24.png" target="_blank" rel="noopener noreferrer"><div class="gallery-frame"><img src="images/maps/map24.png" alt="Map 24"></div></a></div>
+            <article class="gallery-item gallery-item--stagger" data-collection="ogallala">
+                <div class="gallery-card"><a href="images/maps/large/map24.jpg" target="_blank" rel="noopener noreferrer"><div class="gallery-frame"><img src="images/maps/thumbs/map24.jpg" width="900" height="582" loading="lazy" decoding="async" alt="Map 24"></div></a></div>
             </article>
-            <article class="gallery-item">
-                <div class="gallery-card"><a href="images/maps/map25.png" target="_blank" rel="noopener noreferrer"><div class="gallery-frame"><img src="images/maps/map25.png" alt="Map 25"></div></a></div>
+            <article class="gallery-item" data-collection="ogallala">
+                <div class="gallery-card"><a href="images/maps/large/map25.jpg" target="_blank" rel="noopener noreferrer"><div class="gallery-frame"><img src="images/maps/thumbs/map25.jpg" width="900" height="582" loading="lazy" decoding="async" alt="Map 25"></div></a></div>
             </article>
-            <article class="gallery-item gallery-item--stagger">
-                <div class="gallery-card"><a href="images/maps/map26.png" target="_blank" rel="noopener noreferrer"><div class="gallery-frame"><img src="images/maps/map26.png" alt="Map 26"></div></a></div>
+            <article class="gallery-item gallery-item--stagger" data-collection="ogallala">
+                <div class="gallery-card"><a href="images/maps/large/map26.jpg" target="_blank" rel="noopener noreferrer"><div class="gallery-frame"><img src="images/maps/thumbs/map26.jpg" width="900" height="582" loading="lazy" decoding="async" alt="Map 26"></div></a></div>
             </article>
-            <article class="gallery-item">
-                <div class="gallery-card"><a href="images/maps/map27.png" target="_blank" rel="noopener noreferrer"><div class="gallery-frame"><img src="images/maps/map27.png" alt="Map 27"></div></a></div>
+            <article class="gallery-item" data-collection="philippines">
+                <div class="gallery-card"><a href="images/maps/large/map27.jpg" target="_blank" rel="noopener noreferrer"><div class="gallery-frame"><img src="images/maps/thumbs/map27.jpg" width="695" height="900" loading="lazy" decoding="async" alt="Map 27"></div></a></div>
             </article>
-            <article class="gallery-item gallery-item--stagger">
-                <div class="gallery-card"><a href="images/maps/map28.png" target="_blank" rel="noopener noreferrer"><div class="gallery-frame"><img src="images/maps/map28.png" alt="Map 28"></div></a></div>
+            <article class="gallery-item gallery-item--stagger" data-collection="philippines">
+                <div class="gallery-card"><a href="images/maps/large/map28.jpg" target="_blank" rel="noopener noreferrer"><div class="gallery-frame"><img src="images/maps/thumbs/map28.jpg" width="695" height="900" loading="lazy" decoding="async" alt="Map 28"></div></a></div>
             </article>
-            <article class="gallery-item">
-                <div class="gallery-card"><a href="images/maps/map29.png" target="_blank" rel="noopener noreferrer"><div class="gallery-frame"><img src="images/maps/map29.png" alt="Map 29"></div></a></div>
+            <article class="gallery-item" data-collection="philippines">
+                <div class="gallery-card"><a href="images/maps/large/map29.jpg" target="_blank" rel="noopener noreferrer"><div class="gallery-frame"><img src="images/maps/thumbs/map29.jpg" width="695" height="900" loading="lazy" decoding="async" alt="Map 29"></div></a></div>
             </article>
-            <article class="gallery-item gallery-item--stagger">
-                <div class="gallery-card"><a href="images/maps/map30.png" target="_blank" rel="noopener noreferrer"><div class="gallery-frame"><img src="images/maps/map30.png" alt="Map 30"></div></a></div>
+            <article class="gallery-item gallery-item--stagger" data-collection="philippines">
+                <div class="gallery-card"><a href="images/maps/large/map30.jpg" target="_blank" rel="noopener noreferrer"><div class="gallery-frame"><img src="images/maps/thumbs/map30.jpg" width="695" height="900" loading="lazy" decoding="async" alt="Map 30"></div></a></div>
             </article>
-            <article class="gallery-item">
-                <div class="gallery-card"><a href="images/maps/map31.png" target="_blank" rel="noopener noreferrer"><div class="gallery-frame"><img src="images/maps/map31.png" alt="Map 31"></div></a></div>
+            <article class="gallery-item" data-collection="philippines">
+                <div class="gallery-card"><a href="images/maps/large/map31.jpg" target="_blank" rel="noopener noreferrer"><div class="gallery-frame"><img src="images/maps/thumbs/map31.jpg" width="695" height="900" loading="lazy" decoding="async" alt="Map 31"></div></a></div>
             </article>
-            <article class="gallery-item gallery-item--stagger">
-                <div class="gallery-card"><a href="images/maps/map32.png" target="_blank" rel="noopener noreferrer"><div class="gallery-frame"><img src="images/maps/map32.png" alt="Map 32"></div></a></div>
+            <article class="gallery-item gallery-item--stagger" data-collection="philippines">
+                <div class="gallery-card"><a href="images/maps/large/map32.jpg" target="_blank" rel="noopener noreferrer"><div class="gallery-frame"><img src="images/maps/thumbs/map32.jpg" width="695" height="900" loading="lazy" decoding="async" alt="Map 32"></div></a></div>
             </article>
-            <article class="gallery-item">
-                <div class="gallery-card"><a href="images/maps/map33.png" target="_blank" rel="noopener noreferrer"><div class="gallery-frame"><img src="images/maps/map33.png" alt="Map 33"></div></a></div>
+            <article class="gallery-item" data-collection="philippines">
+                <div class="gallery-card"><a href="images/maps/large/map33.jpg" target="_blank" rel="noopener noreferrer"><div class="gallery-frame"><img src="images/maps/thumbs/map33.jpg" width="695" height="900" loading="lazy" decoding="async" alt="Map 33"></div></a></div>
             </article>
-            <article class="gallery-item gallery-item--stagger">
-                <div class="gallery-card"><a href="images/maps/map34.png" target="_blank" rel="noopener noreferrer"><div class="gallery-frame"><img src="images/maps/map34.png" alt="Map 34"></div></a></div>
+            <article class="gallery-item gallery-item--stagger" data-collection="philippines">
+                <div class="gallery-card"><a href="images/maps/large/map34.jpg" target="_blank" rel="noopener noreferrer"><div class="gallery-frame"><img src="images/maps/thumbs/map34.jpg" width="695" height="900" loading="lazy" decoding="async" alt="Map 34"></div></a></div>
             </article>
-            <article class="gallery-item">
-                <div class="gallery-card"><a href="images/maps/map35.png" target="_blank" rel="noopener noreferrer"><div class="gallery-frame"><img src="images/maps/map35.png" alt="Map 35"></div></a></div>
+            <article class="gallery-item" data-collection="philippines">
+                <div class="gallery-card"><a href="images/maps/large/map35.jpg" target="_blank" rel="noopener noreferrer"><div class="gallery-frame"><img src="images/maps/thumbs/map35.jpg" width="695" height="900" loading="lazy" decoding="async" alt="Map 35"></div></a></div>
             </article>
-            <article class="gallery-item gallery-item--stagger">
-                <div class="gallery-card"><a href="images/maps/map36.png" target="_blank" rel="noopener noreferrer"><div class="gallery-frame"><img src="images/maps/map36.png" alt="Map 36"></div></a></div>
+            <article class="gallery-item gallery-item--stagger" data-collection="philippines">
+                <div class="gallery-card"><a href="images/maps/large/map36.jpg" target="_blank" rel="noopener noreferrer"><div class="gallery-frame"><img src="images/maps/thumbs/map36.jpg" width="695" height="900" loading="lazy" decoding="async" alt="Map 36"></div></a></div>
             </article>
-            <article class="gallery-item">
-                <div class="gallery-card"><a href="images/maps/map37.png" target="_blank" rel="noopener noreferrer"><div class="gallery-frame"><img src="images/maps/map37.png" alt="Map 37"></div></a></div>
+            <article class="gallery-item" data-collection="philippines">
+                <div class="gallery-card"><a href="images/maps/large/map37.jpg" target="_blank" rel="noopener noreferrer"><div class="gallery-frame"><img src="images/maps/thumbs/map37.jpg" width="695" height="900" loading="lazy" decoding="async" alt="Map 37"></div></a></div>
             </article>
-            <article class="gallery-item gallery-item--stagger">
-                <div class="gallery-card"><a href="images/maps/map38.png" target="_blank" rel="noopener noreferrer"><div class="gallery-frame"><img src="images/maps/map38.png" alt="Map 38"></div></a></div>
+            <article class="gallery-item gallery-item--stagger" data-collection="philippines">
+                <div class="gallery-card"><a href="images/maps/large/map38.jpg" target="_blank" rel="noopener noreferrer"><div class="gallery-frame"><img src="images/maps/thumbs/map38.jpg" width="695" height="900" loading="lazy" decoding="async" alt="Map 38"></div></a></div>
             </article>
-            <article class="gallery-item">
-                <div class="gallery-card"><a href="images/maps/map39.png" target="_blank" rel="noopener noreferrer"><div class="gallery-frame"><img src="images/maps/map39.png" alt="Map 39"></div></a></div>
+            <article class="gallery-item" data-collection="philippines">
+                <div class="gallery-card"><a href="images/maps/large/map39.jpg" target="_blank" rel="noopener noreferrer"><div class="gallery-frame"><img src="images/maps/thumbs/map39.jpg" width="900" height="585" loading="lazy" decoding="async" alt="Map 39"></div></a></div>
             </article>
-            <article class="gallery-item gallery-item--stagger">
-                <div class="gallery-card"><a href="images/maps/map40.png" target="_blank" rel="noopener noreferrer"><div class="gallery-frame"><img src="images/maps/map40.png" alt="Map 40"></div></a></div>
+            <article class="gallery-item gallery-item--stagger" data-collection="forestry-planning">
+                <div class="gallery-card"><a href="images/maps/large/map40.jpg" target="_blank" rel="noopener noreferrer"><div class="gallery-frame"><img src="images/maps/thumbs/map40.jpg" width="695" height="900" loading="lazy" decoding="async" alt="Map 40"></div></a></div>
             </article>
-            <article class="gallery-item">
-                <div class="gallery-card"><a href="images/maps/map41.png" target="_blank" rel="noopener noreferrer"><div class="gallery-frame"><img src="images/maps/map41.png" alt="Map 41"></div></a></div>
+            <article class="gallery-item" data-collection="forestry-planning">
+                <div class="gallery-card"><a href="images/maps/large/map41.jpg" target="_blank" rel="noopener noreferrer"><div class="gallery-frame"><img src="images/maps/thumbs/map41.jpg" width="582" height="900" loading="lazy" decoding="async" alt="Map 41"></div></a></div>
             </article>
-            <article class="gallery-item gallery-item--stagger">
-                <div class="gallery-card"><a href="images/maps/map42.png" target="_blank" rel="noopener noreferrer"><div class="gallery-frame"><img src="images/maps/map42.png" alt="Map 42"></div></a></div>
+            <article class="gallery-item gallery-item--stagger" data-collection="forestry-planning">
+                <div class="gallery-card"><a href="images/maps/large/map42.jpg" target="_blank" rel="noopener noreferrer"><div class="gallery-frame"><img src="images/maps/thumbs/map42.jpg" width="695" height="900" loading="lazy" decoding="async" alt="Map 42"></div></a></div>
             </article>
-            <article class="gallery-item">
-                <div class="gallery-card"><a href="images/maps/map43.png" target="_blank" rel="noopener noreferrer"><div class="gallery-frame"><img src="images/maps/map43.png" alt="Map 43"></div></a></div>
+            <article class="gallery-item" data-collection="forestry-planning">
+                <div class="gallery-card"><a href="images/maps/large/map43.jpg" target="_blank" rel="noopener noreferrer"><div class="gallery-frame"><img src="images/maps/thumbs/map43.jpg" width="695" height="900" loading="lazy" decoding="async" alt="Map 43"></div></a></div>
             </article>
-            <article class="gallery-item gallery-item--stagger">
-                <div class="gallery-card"><a href="images/maps/map44.png" target="_blank" rel="noopener noreferrer"><div class="gallery-frame"><img src="images/maps/map44.png" alt="Map 44"></div></a></div>
+            <article class="gallery-item gallery-item--stagger" data-collection="forestry-planning">
+                <div class="gallery-card"><a href="images/maps/large/map44.jpg" target="_blank" rel="noopener noreferrer"><div class="gallery-frame"><img src="images/maps/thumbs/map44.jpg" width="900" height="582" loading="lazy" decoding="async" alt="Map 44"></div></a></div>
             </article>
-            <article class="gallery-item">
-                <div class="gallery-card"><a href="images/maps/map45.png" target="_blank" rel="noopener noreferrer"><div class="gallery-frame"><img src="images/maps/map45.png" alt="Map 45"></div></a></div>
+            <article class="gallery-item" data-collection="forestry-planning">
+                <div class="gallery-card"><a href="images/maps/large/map45.jpg" target="_blank" rel="noopener noreferrer"><div class="gallery-frame"><img src="images/maps/thumbs/map45.jpg" width="900" height="582" loading="lazy" decoding="async" alt="Map 45"></div></a></div>
             </article>
-            <article class="gallery-item gallery-item--stagger">
-                <div class="gallery-card"><a href="images/maps/map46.png" target="_blank" rel="noopener noreferrer"><div class="gallery-frame"><img src="images/maps/map46.png" alt="Map 46"></div></a></div>
+            <article class="gallery-item gallery-item--stagger" data-collection="forestry-planning">
+                <div class="gallery-card"><a href="images/maps/large/map46.jpg" target="_blank" rel="noopener noreferrer"><div class="gallery-frame"><img src="images/maps/thumbs/map46.jpg" width="900" height="582" loading="lazy" decoding="async" alt="Map 46"></div></a></div>
             </article>
-            <article class="gallery-item">
-                <div class="gallery-card"><a href="images/maps/map47.png" target="_blank" rel="noopener noreferrer"><div class="gallery-frame"><img src="images/maps/map47.png" alt="Map 47"></div></a></div>
+            <article class="gallery-item" data-collection="forestry-planning">
+                <div class="gallery-card"><a href="images/maps/large/map47.jpg" target="_blank" rel="noopener noreferrer"><div class="gallery-frame"><img src="images/maps/thumbs/map47.jpg" width="900" height="582" loading="lazy" decoding="async" alt="Map 47"></div></a></div>
             </article>
-            <article class="gallery-item gallery-item--stagger">
-                <div class="gallery-card"><a href="images/maps/map48.png" target="_blank" rel="noopener noreferrer"><div class="gallery-frame"><img src="images/maps/map48.png" alt="Map 48"></div></a></div>
+            <article class="gallery-item gallery-item--stagger" data-collection="forestry-planning">
+                <div class="gallery-card"><a href="images/maps/large/map48.jpg" target="_blank" rel="noopener noreferrer"><div class="gallery-frame"><img src="images/maps/thumbs/map48.jpg" width="900" height="582" loading="lazy" decoding="async" alt="Map 48"></div></a></div>
             </article>
-            <article class="gallery-item">
-                <div class="gallery-card"><a href="images/maps/map49.png" target="_blank" rel="noopener noreferrer"><div class="gallery-frame"><img src="images/maps/map49.png" alt="Map 49"></div></a></div>
+            <article class="gallery-item" data-collection="terrain-hydrology">
+                <div class="gallery-card"><a href="images/maps/large/map49.jpg" target="_blank" rel="noopener noreferrer"><div class="gallery-frame"><img src="images/maps/thumbs/map49.jpg" width="900" height="506" loading="lazy" decoding="async" alt="Map 49"></div></a></div>
             </article>
-            <article class="gallery-item gallery-item--stagger">
-                <div class="gallery-card"><a href="images/maps/map50.png" target="_blank" rel="noopener noreferrer"><div class="gallery-frame"><img src="images/maps/map50.png" alt="Map 50"></div></a></div>
+            <article class="gallery-item gallery-item--stagger" data-collection="terrain-hydrology">
+                <div class="gallery-card"><a href="images/maps/large/map50.jpg" target="_blank" rel="noopener noreferrer"><div class="gallery-frame"><img src="images/maps/thumbs/map50.jpg" width="582" height="900" loading="lazy" decoding="async" alt="Map 50"></div></a></div>
             </article>
         </div>
     </main>
 
+    <script>
+        (function () {
+            var wanted = new URLSearchParams(window.location.search).get('collection') || 'all';
+            var valid = document.querySelector('.gallery-filters [data-filter="' + wanted + '"]');
+            if (!valid) { wanted = 'all'; }
+            document.querySelectorAll('.gallery-item').forEach(function (el) {
+                el.hidden = wanted !== 'all' && el.dataset.collection !== wanted;
+            });
+            document.querySelectorAll('.gallery-filters a').forEach(function (a) {
+                a.classList.toggle('active', a.dataset.filter === wanted);
+            });
+            if (wanted !== 'all') { document.title = valid.textContent + ' | Map Gallery | Colin Stiles'; }
+        })();
+    </script>
     <script src="js/scripts.js"></script>
 </body>
 </html>
