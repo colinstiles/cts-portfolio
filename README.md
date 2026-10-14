@@ -21,7 +21,13 @@ This repository contains a static portfolio website built with HTML, CSS, and Ja
 - `map-gallery.html` — dedicated map gallery page
 - `css/styles.css` — site styling
 - `js/scripts.js` — navigation, scrolling, menu, and timeline behavior
-- `images/` — portfolio images and map gallery assets
+- `images/` — image assets, grouped into subfolders:
+  - `maps/` — map gallery images
+  - `projects/` — project card thumbnails
+  - `logos/` — affiliation logos
+  - `site/` — profile photo and hero background
+  - `favicons/` — favicon and app icons
+- `docs/` — downloadable and linked documents (resume PDF, project write-ups)
 
 ## Updating content
 
