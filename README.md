@@ -4,7 +4,7 @@
 
 Personal GIS portfolio site for Colin T. Stiles, hosted on GitHub Pages.
 
-Live site: [colinstiles.github.io/cts-gis-portfolio](https://colinstiles.github.io/cts-gis-portfolio)
+Live site: [colinstiles.github.io/cts-portfolio](https://colinstiles.github.io/cts-portfolio)
 
 ## Overview
 

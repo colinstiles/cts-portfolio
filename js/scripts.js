@@ -3,7 +3,7 @@
     Version: 1.4
     Last Change: 08/18/2026
     Author: Colin T. Stiles
-    Repo: https://github.com/colinstiles/cts-gis-portfolio
+    Repo: https://github.com/colinstiles/cts-portfolio
 */
 
 (function(window, document, $) {
