@@ -1,4 +1,4 @@
-# TDF Buildings - Excel to ArcGIS Online Feature Layer Pipeline
+# Excel to ArcGIS Online Feature Layer Pipeline
 
 Version: v10 direct hosted feature service publish.
 
@@ -7,19 +7,21 @@ This notebook reads the TDF Buildings workbook, applies reviewer-managed overrid
 
 ## Table of Contents
 
-1. [Configuration](#1.-Configuration)
-2. [Imports, logging, and ArcGIS connection](#2.-Imports,-logging,-and-ArcGIS-connection)
-3. [Read the workbook](#3.-Read-the-workbook)
-4. [Standardize fields](#4.-Standardize-fields)
-5. [Address and attribute quality checks](#5.-Address-and-attribute-quality-checks)
-6. [Manual override control file](#6.-Manual-override-control-file)
-7. [Geocode unique addresses](#7.-Geocode-unique-addresses)
-8. [Join geocode results and apply manual overrides](#8.-Join-geocode-results-and-apply-manual-overrides)
-9. [Create a Spatially Enabled DataFrame](#9.-Create-a-Spatially-Enabled-DataFrame)
-10. [Optional map preview](#10.-Optional-map-preview)
-11. [Publish or refresh hosted feature layer](#11.-Publish-or-refresh-hosted-feature-layer)
-12. [Run Summary](#12.-Run-Summary)
-13. [Final output checklist](#13.-Final-output-checklist)
+- [Excel to ArcGIS Online Feature Layer Pipeline](#excel-to-arcgis-online-feature-layer-pipeline)
+  - [Table of Contents](#table-of-contents)
+  - [1. Configuration](#1-configuration)
+  - [2. Imports, logging, and ArcGIS connection](#2-imports-logging-and-arcgis-connection)
+  - [3. Read the workbook](#3-read-the-workbook)
+  - [4. Standardize fields](#4-standardize-fields)
+  - [5. Address and attribute quality checks](#5-address-and-attribute-quality-checks)
+  - [6. Manual override control file](#6-manual-override-control-file)
+  - [7. Geocode unique addresses](#7-geocode-unique-addresses)
+  - [8. Join geocode results and apply manual overrides](#8-join-geocode-results-and-apply-manual-overrides)
+  - [9. Create a Spatially Enabled DataFrame](#9-create-a-spatially-enabled-dataframe)
+  - [10. Optional map preview](#10-optional-map-preview)
+  - [11. Publish or refresh hosted feature layer](#11-publish-or-refresh-hosted-feature-layer)
+  - [12. Run Summary](#12-run-summary)
+  - [13. Final output checklist](#13-final-output-checklist)
 
 ## 1. Configuration
 
@@ -33,8 +35,6 @@ Manual corrections should be entered in `tdf_buildings_manual_overrides.csv`, no
 
 The default workbook path assumes this file name exists in `/arcgis/home`:
 
-`RPP 2026 AGR Building & Land Status Check.xlsx`
-
 
 
 ```python
@@ -44,23 +44,23 @@ from pathlib import Path
 from typing import Optional
 
 # ArcGIS Online Notebooks normally use /arcgis/home.
-HOME = Path('/arcgis/home/tdf_facilities') if Path('/arcgis/home/tdf_facilities').exists() else Path.cwd()
+HOME = Path('/arcgis/home/') if Path('/arcgis/home/').exists() else Path.cwd()
 
 @dataclass(frozen=True)
 class NotebookConfig:
-    project_name: str = 'tdf_buildings_pipeline'
+    project_name: str = ''
     
     # Paths
-    source_path: Path = HOME / 'RPP 2026 AGR Building & Land Status Check.xlsx'
+    source_path: Path = HOME / ''
     sheet_name: str = 'Buildings'
     header_row: int = 1  # pandas is zero-based; 1 means Excel row 2.
     excel_engine: str = 'openpyxl'
     
-    output_dir: Path = HOME / 'tdf_buildings_outputs'
-    log_dir: Path = HOME / 'tdf_buildings_outputs' / 'logs'
+    output_dir: Path = HOME / ''
+    log_dir: Path = HOME / '' / 'logs'
     
     # Manual review/correction file. Do not edit the raw workbook for pipeline-only fixes.
-    manual_overrides_file_name: str = 'tdf_buildings_manual_overrides.csv'
+    manual_overrides_file_name: str = '.csv'
     
     # Safety switches. Leave publishing off until QA and geocoding outputs are reviewed.
     run_geocoding: bool = False
@@ -90,17 +90,17 @@ class NotebookConfig:
     # publish_title is the ArcGIS Online item title.
     # publish_service_name is the URL-safe FeatureServer service name.
     # publish_layer_name is the Layer (0) name shown inside the service.
-    publish_title: str = 'TDF Buildings and Facilities'
-    publish_service_name: str = 'TDF_Buildings_and_Facilities'
-    publish_layer_name: str = 'TDF Buildings and Facilities'
+    publish_title: str = ''
+    publish_service_name: str = ''
+    publish_layer_name: str = ''
     allow_service_name_suffix_if_unavailable: bool = False
     max_record_count: int = 2000
-    publish_tags: tuple[str, ...] = ('TDF', 'Buildings', 'Facilities', 'Assets', 'Bureaus Veritas')
-    publish_summary: str = 'Point locations for buildings owned and managed by Tennessee Division of Forestry.'
-    publish_description: str = "This hosted feature layer is generated from the Buildings worksheet in the RPP building and land status workbook. Coordinates are produced from address geocoding, reviewer-managed manual overrides, and notebook QA outputs. This layer is intended for planning, asset management, and public-information workflows. It is not a legal survey or substitute for official deeds, surveys, or property records."
+    publish_tags: tuple[str, ...] = ('', 'Buildings', 'Facilities', 'Assets', '')
+    publish_summary: str = 'Point locations for buildings.'
+    publish_description: str = "."
     
     # Leave blank to create a new layer. After first publish, paste item ID here to refresh.
-    feature_layer_item_id: str = 'a2f0811ed0e44e3e8933411739302e92'
+    feature_layer_item_id: str = '1234567'
     
     # Existing-layer refresh behavior
     refresh_strategy: str = 'upsert'  # 'upsert', 'truncate_add', or 'delete_add'
@@ -113,21 +113,21 @@ CONFIG = NotebookConfig()
 CONFIG.output_dir.mkdir(parents=True, exist_ok=True)
 CONFIG.log_dir.mkdir(parents=True, exist_ok=True)
 
-NORMALIZED_CSV = CONFIG.output_dir / 'tdf_buildings_normalized.csv'
-GEOCODED_CSV = CONFIG.output_dir / 'tdf_buildings_geocoded.csv'
-GEOCODE_CACHE_CSV = CONFIG.output_dir / 'tdf_buildings_geocode_cache.csv'
-GEOCODE_VALIDATION_CSV = CONFIG.output_dir / 'tdf_buildings_geocode_validation_review.csv'
-QA_REPORT_CSV = CONFIG.output_dir / 'tdf_buildings_quality_report.csv'
-ADDRESS_REVIEW_CSV = CONFIG.output_dir / 'tdf_buildings_address_review.csv'
-SHARED_ADDRESS_SUMMARY_CSV = CONFIG.output_dir / 'tdf_buildings_shared_address_summary.csv'
-ZIP_CONFLICTS_CSV = CONFIG.output_dir / 'tdf_buildings_zip_conflicts.csv'
-POTENTIAL_TYPOS_CSV = CONFIG.output_dir / 'tdf_buildings_potential_typos.csv'
-SQUARE_FEET_REVIEW_CSV = CONFIG.output_dir / 'tdf_buildings_square_feet_review.csv'
-QA_REVIEW_XLSX = CONFIG.output_dir / 'tdf_buildings_qa_review.xlsx'
+NORMALIZED_CSV = CONFIG.output_dir / '.csv'
+GEOCODED_CSV = CONFIG.output_dir / '.csv'
+GEOCODE_CACHE_CSV = CONFIG.output_dir / '.csv'
+GEOCODE_VALIDATION_CSV = CONFIG.output_dir / '.csv'
+QA_REPORT_CSV = CONFIG.output_dir / '.csv'
+ADDRESS_REVIEW_CSV = CONFIG.output_dir / '.csv'
+SHARED_ADDRESS_SUMMARY_CSV = CONFIG.output_dir / '.csv'
+ZIP_CONFLICTS_CSV = CONFIG.output_dir / '.csv'
+POTENTIAL_TYPOS_CSV = CONFIG.output_dir / '.csv'
+SQUARE_FEET_REVIEW_CSV = CONFIG.output_dir / '.csv'
+QA_REVIEW_XLSX = CONFIG.output_dir / '.xlsx'
 MANUAL_OVERRIDES_CSV = CONFIG.output_dir / CONFIG.manual_overrides_file_name
-LEGACY_MANUAL_COORDINATE_OVERRIDES_CSV = CONFIG.output_dir / 'tdf_buildings_manual_coordinate_overrides.csv'
-MANUAL_OVERRIDE_AUDIT_CSV = CONFIG.output_dir / 'tdf_buildings_manual_override_audit.csv'
-PUBLISH_FIELDS_PREVIEW_CSV = CONFIG.output_dir / 'tdf_buildings_publish_fields_preview.csv'
+LEGACY_MANUAL_COORDINATE_OVERRIDES_CSV = CONFIG.output_dir / '.csv'
+MANUAL_OVERRIDE_AUDIT_CSV = CONFIG.output_dir / '.csv'
+PUBLISH_FIELDS_PREVIEW_CSV = CONFIG.output_dir / '.csv'
 
 # The generated local file geodatabase/source item is intentionally avoided in v10 new-publish mode.
 # New publishing uses gis.content.create_service() + FeatureLayerCollection.manager.add_to_definition().
@@ -183,7 +183,7 @@ CONFIG
 
 
 
-    NotebookConfig(project_name='tdf_buildings_pipeline', source_path=PosixPath('/arcgis/home/tdf_facilities/RPP 2026 AGR Building & Land Status Check.xlsx'), sheet_name='Buildings', header_row=1, excel_engine='openpyxl', output_dir=PosixPath('/arcgis/home/tdf_facilities/tdf_buildings_outputs'), log_dir=PosixPath('/arcgis/home/tdf_facilities/tdf_buildings_outputs/logs'), manual_overrides_file_name='tdf_buildings_manual_overrides.csv', run_geocoding=False, run_publish=True, geocode_score_min=85, geocode_mode='single', geocode_batch_size=None, geocode_delay_seconds=0.25, source_country='USA', geocode_location_type='rooftop', geocode_category=None, geocode_cache_version='v2_result_validation', force_regeocode=False, max_allowed_suspect_assignments=10, minimum_publish_ready_records=1, write_full_geocode_review=True, coordinate_min_latitude=34.0, coordinate_max_latitude=37.5, coordinate_min_longitude=-91.5, coordinate_max_longitude=-80.5, publish_title='TDF Buildings and Facilities', publish_service_name='TDF_Buildings_and_Facilities', publish_layer_name='TDF Buildings and Facilities', allow_service_name_suffix_if_unavailable=False, max_record_count=2000, publish_tags=('TDF', 'Buildings', 'Facilities', 'Assets', 'Bureaus Veritas'), publish_summary='Point locations for buildings owned and managed by Tennessee Division of Forestry.', publish_description='This hosted feature layer is generated from the Buildings worksheet in the RPP building and land status workbook. Coordinates are produced from address geocoding, reviewer-managed manual overrides, and notebook QA outputs. This layer is intended for planning, asset management, and public-information workflows. It is not a legal survey or substitute for official deeds, surveys, or property records.', feature_layer_item_id='', refresh_strategy='upsert', sync_key_field='building_code', upsert_delete_missing_records=True, publish_batch_size=200, truncate_async=False)
+    NotebookConfig(project_name='', source_path=PosixPath('/arcgis/home/tdf_facilities/RPP 2026 AGR Building & Land Status Check.xlsx'), sheet_name='Buildings', header_row=1, excel_engine='openpyxl', output_dir=PosixPath('/arcgis/home/tdf_facilities/tdf_buildings_outputs'), log_dir=PosixPath('/arcgis/home/tdf_facilities/tdf_buildings_outputs/logs'), manual_overrides_file_name='tdf_buildings_manual_overrides.csv', run_geocoding=False, run_publish=True, geocode_score_min=85, geocode_mode='single', geocode_batch_size=None, geocode_delay_seconds=0.25, source_country='USA', geocode_location_type='rooftop', geocode_category=None, geocode_cache_version='v2_result_validation', force_regeocode=False, max_allowed_suspect_assignments=10, minimum_publish_ready_records=1, write_full_geocode_review=True, coordinate_min_latitude=34.0, coordinate_max_latitude=37.5, coordinate_min_longitude=-91.5, coordinate_max_longitude=-80.5, publish_title='TDF Buildings and Facilities', publish_service_name='TDF_Buildings_and_Facilities', publish_layer_name='TDF Buildings and Facilities', allow_service_name_suffix_if_unavailable=False, max_record_count=2000, publish_tags=('TDF', 'Buildings', 'Facilities', 'Assets', 'Bureaus Veritas'), publish_summary='Point locations for buildings owned and managed by Tennessee Division of Forestry.', publish_description='This hosted feature layer is generated from the Buildings worksheet in the RPP building and land status workbook. Coordinates are produced from address geocoding, reviewer-managed manual overrides, and notebook QA outputs. This layer is intended for planning, asset management, and public-information workflows. It is not a legal survey or substitute for official deeds, surveys, or property records.', feature_layer_item_id='', refresh_strategy='upsert', sync_key_field='building_code', upsert_delete_missing_records=True, publish_batch_size=200, truncate_async=False)
 
 
 
@@ -248,18 +248,6 @@ logger.info('openpyxl version: %s', openpyxl.__version__)
 
 ```
 
-    2026-07-08 19:25:06 | INFO | tdf_buildings_pipeline | Notebook run started
-    2026-07-08 19:25:06 | INFO | tdf_buildings_pipeline | Run ID: 20260708T192506Z
-    2026-07-08 19:25:06 | INFO | tdf_buildings_pipeline | Log path: /arcgis/home/tdf_facilities/tdf_buildings_outputs/logs/tdf_buildings_pipeline_20260708T192506Z.log
-
-
-    You are logged on as colin.stiles_tndof with an administrator role, proceed with caution.
-
-
-    2026-07-08 19:25:07 | INFO | tdf_buildings_pipeline | Connected to: Tennessee Division of Forestry
-    2026-07-08 19:25:07 | INFO | tdf_buildings_pipeline | User: colin.stiles_tndof
-    2026-07-08 19:25:07 | INFO | tdf_buildings_pipeline | openpyxl version: 3.1.5
-
 
 ## 3. Read the workbook
 
@@ -287,8 +275,6 @@ logger.info('Read %s records from sheet "%s".', len(raw), CONFIG.sheet_name)
 display(raw.head())
 
 ```
-
-    2026-07-08 19:25:07 | INFO | tdf_buildings_pipeline | Read 463 records from sheet "Buildings".
 
 
 
@@ -713,11 +699,6 @@ display(df.head())
 logger.info('Dataframe dtypes:\n%s', df.dtypes)
 
 ```
-
-    2026-07-08 19:25:07 | INFO | tdf_buildings_pipeline | Loaded manual override file: /arcgis/home/tdf_facilities/tdf_buildings_outputs/tdf_buildings_manual_overrides.csv
-    2026-07-08 19:25:07 | INFO | tdf_buildings_pipeline | Wrote/refreshed manual override file without changing reviewer-entered override values: /arcgis/home/tdf_facilities/tdf_buildings_outputs/tdf_buildings_manual_overrides.csv
-    2026-07-08 19:25:07 | INFO | tdf_buildings_pipeline | Saved manual override audit CSV: /arcgis/home/tdf_facilities/tdf_buildings_outputs/tdf_buildings_manual_override_audit.csv
-
 
 
 <div>
@@ -1287,11 +1268,6 @@ display(address_review.head(75))
 </div>
 
 
-    2026-07-08 19:25:08 | INFO | tdf_buildings_pipeline | Saved QA report: /arcgis/home/tdf_facilities/tdf_buildings_outputs/tdf_buildings_quality_report.csv
-    2026-07-08 19:25:08 | INFO | tdf_buildings_pipeline | Saved address review CSV: /arcgis/home/tdf_facilities/tdf_buildings_outputs/tdf_buildings_address_review.csv
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -1680,12 +1656,6 @@ with pd.ExcelWriter(QA_REVIEW_XLSX, engine=CONFIG.excel_engine) as writer:
 logger.info('Saved QA review workbook: %s', QA_REVIEW_XLSX)
 
 ```
-
-    2026-07-08 19:25:08 | INFO | tdf_buildings_pipeline | Duplicate/shared address groups: 105
-    2026-07-08 19:25:08 | INFO | tdf_buildings_pipeline | Saved shared address summary: /arcgis/home/tdf_facilities/tdf_buildings_outputs/tdf_buildings_shared_address_summary.csv
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -2015,10 +1985,6 @@ logger.info('Saved QA review workbook: %s', QA_REVIEW_XLSX)
 </div>
 
 
-    2026-07-08 19:25:08 | INFO | tdf_buildings_pipeline | Saved ZIP conflicts CSV: /arcgis/home/tdf_facilities/tdf_buildings_outputs/tdf_buildings_zip_conflicts.csv
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -2076,10 +2042,6 @@ logger.info('Saved QA review workbook: %s', QA_REVIEW_XLSX)
   </tbody>
 </table>
 </div>
-
-
-    2026-07-08 19:25:08 | INFO | tdf_buildings_pipeline | Saved potential typo review CSV: /arcgis/home/tdf_facilities/tdf_buildings_outputs/tdf_buildings_potential_typos.csv
-
 
 
 <div>
@@ -2180,10 +2142,6 @@ logger.info('Saved QA review workbook: %s', QA_REVIEW_XLSX)
   </tbody>
 </table>
 </div>
-
-
-    2026-07-08 19:25:08 | INFO | tdf_buildings_pipeline | Saved square feet review CSV: /arcgis/home/tdf_facilities/tdf_buildings_outputs/tdf_buildings_square_feet_review.csv
-
 
 
 <div>
@@ -2769,11 +2727,6 @@ logger.info('Saved QA review workbook: %s', QA_REVIEW_XLSX)
 </table>
 </div>
 
-
-    2026-07-08 19:25:08 | INFO | tdf_buildings_pipeline | Saved normalized CSV: /arcgis/home/tdf_facilities/tdf_buildings_outputs/tdf_buildings_normalized.csv
-    2026-07-08 19:25:08 | INFO | tdf_buildings_pipeline | Saved QA review workbook: /arcgis/home/tdf_facilities/tdf_buildings_outputs/tdf_buildings_qa_review.xlsx
-
-
 ## 6. Manual override control file
 
 Use `tdf_buildings_manual_overrides.csv` as the editable correction layer. The notebook creates/refreses this file with one row per `building_code`, preserves reviewer-entered override values, and applies those overrides before QA/geocoding or before publishing.
@@ -2819,13 +2772,6 @@ logger.info('Manual override current QA/edit queue rows: %s', len(manual_overrid
 display(manual_override_work_queue.head(100))
 
 ```
-
-    Manual override file: /arcgis/home/tdf_facilities/tdf_buildings_outputs/tdf_buildings_manual_overrides.csv
-    Edit this file for manual corrections. The notebook will preserve editable override columns on reruns.
-    2026-07-08 19:25:08 | INFO | tdf_buildings_pipeline | Manual override file rows: 463
-    2026-07-08 19:25:08 | INFO | tdf_buildings_pipeline | Manual override current QA/edit queue rows: 97
-
-
 
 <div>
 <style scoped>
@@ -3141,9 +3087,9 @@ display(manual_override_work_queue.head(100))
 
 ## 7. Geocode unique addresses
 
-This section geocodes unique effective address records only, then joins the results back to individual buildings. Existing results are read from `tdf_buildings_geocode_cache.csv` and only uncached addresses are submitted to the locator.
+This section geocodes unique effective address records only, then joins the results back to individual buildings. Existing results are read from `.csv` and only uncached addresses are submitted to the locator.
 
-Address overrides in `tdf_buildings_manual_overrides.csv` are applied before this step, so corrected address values create new address keys and can be geocoded without changing the raw workbook. Records with valid manual coordinates or `exclude_from_publish = TRUE` are not submitted to the locator.
+Address overrides in `.csv` are applied before this step, so corrected address values create new address keys and can be geocoded without changing the raw workbook. Records with valid manual coordinates or `exclude_from_publish = TRUE` are not submitted to the locator.
 
 This section displays a cache-status table. If `run_geocoding = False` and no current-version cache rows are found, downstream geocoded outputs will contain no coordinates. Set `run_geocoding = True` to rebuild the cache.
 
@@ -3192,14 +3138,6 @@ logger.info('Effective batch size: %s', effective_geocode_batch_size())
 logger.info('Geocode mode: %s', CONFIG.geocode_mode)
 
 ```
-
-    2026-07-08 19:25:10 | INFO | tdf_buildings_pipeline | Using geocoder: https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer
-    2026-07-08 19:25:10 | INFO | tdf_buildings_pipeline | SuggestedBatchSize: 150
-    2026-07-08 19:25:10 | INFO | tdf_buildings_pipeline | MaxBatchSize: 1000
-    2026-07-08 19:25:10 | INFO | tdf_buildings_pipeline | Effective batch size: 150
-    2026-07-08 19:25:10 | INFO | tdf_buildings_pipeline | Geocode mode: single
-
-
 
 ```python
 GEOCODE_CACHE_COLUMNS = [
@@ -3307,15 +3245,6 @@ if CONFIG.run_publish and not CONFIG.run_geocoding and len(geocode_cache) == 0 a
 display(to_geocode.head(20))
 
 ```
-
-    2026-07-08 19:25:10 | INFO | tdf_buildings_pipeline | Loaded versioned geocode cache rows: 166
-    2026-07-08 19:25:10 | INFO | tdf_buildings_pipeline | Geocode cache version: v2_result_validation
-    2026-07-08 19:25:10 | INFO | tdf_buildings_pipeline | Force regeocode: False
-    2026-07-08 19:25:10 | INFO | tdf_buildings_pipeline | Unique geocode-eligible addresses: 164
-    2026-07-08 19:25:10 | INFO | tdf_buildings_pipeline | Already cached with current version: 164
-    2026-07-08 19:25:10 | INFO | tdf_buildings_pipeline | Remaining to geocode: 0
-
-
 
 <div>
 <style scoped>
@@ -3686,9 +3615,6 @@ for numeric_col in ['longitude', 'latitude', 'score']:
 display(geocode_cache.head())
 
 ```
-
-    2026-07-08 19:25:10 | INFO | tdf_buildings_pipeline | CONFIG.run_geocoding is False. Toggle it to True in the configuration cell to geocode uncached addresses.
-
 
 
 <div>
@@ -4213,10 +4139,6 @@ df_geocoded = working.copy()
 </div>
 
 
-    2026-07-08 19:25:10 | INFO | tdf_buildings_pipeline | Saved geocode validation review CSV: /arcgis/home/tdf_facilities/tdf_buildings_outputs/tdf_buildings_geocode_validation_review.csv
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -4528,10 +4450,6 @@ df_geocoded = working.copy()
 <p>100 rows × 46 columns</p>
 </div>
 
-
-    2026-07-08 19:25:10 | INFO | tdf_buildings_pipeline | Saved geocoded CSV: /arcgis/home/tdf_facilities/tdf_buildings_outputs/tdf_buildings_geocoded.csv
-
-
 ## 9. Create a Spatially Enabled DataFrame
 
 This step filters to publishable records, trims the outgoing schema to the operational field list, writes a publish-field preview CSV, and creates the Spatially Enabled DataFrame used for previewing and publishing.
@@ -4623,14 +4541,6 @@ logger.info('PUBLISH_ONLY_READY_RECORDS: %s', PUBLISH_ONLY_READY_RECORDS)
 display(sdf.head())
 
 ```
-
-    2026-07-08 19:25:10 | INFO | tdf_buildings_pipeline | Wrote publish-field preview CSV: /arcgis/home/tdf_facilities/tdf_buildings_outputs/tdf_buildings_publish_fields_preview.csv
-    2026-07-08 19:25:10 | INFO | tdf_buildings_pipeline | Publish attribute field count: 18
-    2026-07-08 19:25:10 | INFO | tdf_buildings_pipeline | Publish attribute fields: building_code, building_name, address, city, county, state, postal_code, longitude, latitude, square_feet, predominant_facility_use, building_utilization, asset_status, strategic_asset_status, building_status, geocode_source, override_notes, override_source
-    2026-07-08 19:25:10 | INFO | tdf_buildings_pipeline | Spatial dataframe records: 338
-    2026-07-08 19:25:10 | INFO | tdf_buildings_pipeline | PUBLISH_ONLY_READY_RECORDS: True
-
-
 
 <div>
 <style scoped>
@@ -5364,28 +5274,15 @@ else:
 
 ```
 
-    2026-07-08 19:25:19 | INFO | tdf_buildings_pipeline | Creating hosted feature service. Item title: TDF Buildings and Facilities
-    2026-07-08 19:25:19 | INFO | tdf_buildings_pipeline | FeatureServer service name: TDF_Buildings_and_Facilities
-    2026-07-08 19:25:38 | INFO | tdf_buildings_pipeline | Add layer definition result: {'success': True, 'layers': [{'name': 'TDF Buildings and Facilities', 'id': 0}]}
-    2026-07-08 19:25:39 | INFO | tdf_buildings_pipeline | Adding batch 1 with 200 features
-    2026-07-08 19:25:42 | INFO | tdf_buildings_pipeline | Adding batch 2 with 138 features
-    2026-07-08 19:25:46 | INFO | tdf_buildings_pipeline | Applied publish field aliases: {'success': True}
-    2026-07-08 19:25:48 | INFO | tdf_buildings_pipeline | Created new hosted feature layer item ID: a2f0811ed0e44e3e8933411739302e92
-    2026-07-08 19:25:48 | INFO | tdf_buildings_pipeline | FeatureServer service name: TDF_Buildings_and_Facilities
-    2026-07-08 19:25:48 | INFO | tdf_buildings_pipeline | Layer (0) name: TDF Buildings and Facilities
-    2026-07-08 19:25:48 | INFO | tdf_buildings_pipeline | Paste this item ID into CONFIG.feature_layer_item_id for future refreshes.
-
-
-
 <div class="item_container" style="height: auto; overflow: hidden; border: 1px solid #cfcfcf; border-radius: 2px; background: #f6fafa; line-height: 1.21429em; padding: 10px;">
                     <div class="item_left" style="width: 210px; float: left;">
-                       <a href='https://www.arcgis.com/home/item.html?id=a2f0811ed0e44e3e8933411739302e92' target='_blank'>
+                       <a href='https://www.arcgis.com/home/item.html?id=' target='_blank'>
                         <img src='http://static.arcgis.com/images/desktopapp.png' class="itemThumbnail">
                        </a>
                     </div>
 
                     <div class="item_right"     style="float: none; width: auto; overflow: hidden;">
-                        <a href='https://www.arcgis.com/home/item.html?id=a2f0811ed0e44e3e8933411739302e92' target='_blank'><b>TDF Buildings and Facilities</b>
+                        <a href='https://www.arcgis.com/home/item.html?id=' target='_blank'><b>TDF Buildings and Facilities</b>
                         </a>
                         <br/>Point locations for buildings owned and managed by Tennessee Division of Forestry.<br/><img src='https://www.arcgis.com/home/js/jsapi/esri/css/images/item_type_icons/featureshosted16.png' style="vertical-align:middle;" width=16 height=16>Feature Layer Collection by colin.stiles_tndof
                         <br/>Last Modified: July 08, 2026
@@ -5476,17 +5373,14 @@ summary_path = write_run_summary(run_summary)
 
 ```
 
-    2026-07-08 19:25:48 | INFO | tdf_buildings_pipeline | Wrote run summary: /arcgis/home/tdf_facilities/tdf_buildings_outputs/logs/tdf_buildings_pipeline_20260708T192506Z_summary.json
-
-
 ## 13. Final output checklist
 
 Review these generated files after each run:
 
-- `tdf_buildings_geocoded.csv` - full diagnostic output with all QA/geocoding fields.
-- `tdf_buildings_geocode_validation_review.csv` - records still blocked from production publishing.
-- `tdf_buildings_manual_overrides.csv` - reviewer-managed correction file; preserve this between runs.
-- `tdf_buildings_publish_fields_preview.csv` - exact attribute columns selected for the hosted feature layer.
+- `.csv` - full diagnostic output with all QA/geocoding fields.
+- `.csv` - records still blocked from production publishing.
+- `.csv` - reviewer-managed correction file; preserve this between runs.
+- `.csv` - exact attribute columns selected for the hosted feature layer.
 
 For new publishes, v10 creates the hosted feature service directly and adds a named Layer (0), avoiding the extra source File Geodatabase item. If you need the hosted layer schema physically reduced, publish a new layer with `feature_layer_item_id = ""`. Upsert can refresh records in an existing layer, but it does not remove fields that already exist on that hosted layer.
 

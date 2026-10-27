@@ -17,7 +17,7 @@ Ensure all required variables in **Step 1a** are correctly set before executing 
 ### ⚠️ Hosted Feature Service ID
 Update `fs_id` with the item ID of the hosted feature service created in the initialization notebook.
 ```python
-fs_id = "1ed3df79ff9447db8ad64ea37920711e"
+fs_id = "1234567"
 ```
 
 ### ⚠️ Dependency Mapping (Optional — Content Only)
@@ -98,7 +98,7 @@ All three modules produce:
 # Hosted Feature Service
 # SECURITY: Use environment variable for production deployments
 import os
-fs_id = os.getenv("AGOL_FEATURE_SERVICE_ID", "1ed3df79ff9447db8ad64ea37920711e")
+fs_id = os.getenv("AGOL_FEATURE_SERVICE_ID", "1234567")
 
 # Data Management
 delete_content = True
@@ -246,9 +246,9 @@ print(f"  Last ran: {datetime.now()}")
 
 
     ✓ Connected to Tennessee Division of Forestry
-      Logged in as:  colin.stiles_tndof
+      Logged in as:  account_name
       Role:          org_admin
-      Feature service: https://www.arcgis.com/home/item.html?id=1ed3df79ff9447db8ad64ea37920711e
+      Feature service: https://www.arcgis.com/home/item.html?id=1234567
       Last ran: 2026-07-01 12:02:50.740930
 
 
@@ -3720,9 +3720,6 @@ display(df_licenses)
   <tbody>
     <tr>
       <th>0</th>
-      <td>Aaron.Eaddy_TNDOF</td>
-      <td>Aaron Eaddy</td>
-      <td>Aaron.Eaddy@tn.gov</td>
       <td>2026-06-30 15:07:17+00:00</td>
       <td>2026-01-12 18:54:12+00:00</td>
       <td>Data Editor with External Groups</td>
@@ -3737,9 +3734,6 @@ display(df_licenses)
     </tr>
     <tr>
       <th>1</th>
-      <td>aaron.priddy_tndof</td>
-      <td>Aaron Priddy</td>
-      <td>aaron.priddy@tn.gov</td>
       <td>2026-06-15 13:39:47+00:00</td>
       <td>2023-09-26 11:32:35+00:00</td>
       <td>Data Editor with External Groups</td>
@@ -3754,9 +3748,6 @@ display(df_licenses)
     </tr>
     <tr>
       <th>2</th>
-      <td>Aaron.Smith_tndof</td>
-      <td>Aaron Smith</td>
-      <td>Aaron.Timothy.Smith@tn.gov</td>
       <td>2026-07-01 10:51:20+00:00</td>
       <td>2025-09-22 14:33:58+00:00</td>
       <td>Data Editor with External Groups</td>
@@ -3771,9 +3762,6 @@ display(df_licenses)
     </tr>
     <tr>
       <th>3</th>
-      <td>adam.alexander_TNDOF</td>
-      <td>Adam Alexander</td>
-      <td>adam.alexander@tn.gov</td>
       <td>2026-06-26 23:09:32+00:00</td>
       <td>2021-10-08 15:51:13+00:00</td>
       <td>Data Editor with External Groups</td>
@@ -3788,9 +3776,6 @@ display(df_licenses)
     </tr>
     <tr>
       <th>4</th>
-      <td>adam.madewell_TNDOF</td>
-      <td>Adam Madewell</td>
-      <td>adam.madewell@tn.gov</td>
       <td>2026-06-23 16:26:34+00:00</td>
       <td>2021-10-08 15:15:47+00:00</td>
       <td>Data Editor with External Groups</td>
@@ -4884,9 +4869,6 @@ display(df_group_snapshot.head())
       <td></td>
       <td></td>
       <td>Standard</td>
-      <td>Chris.Carney_TNDOF8</td>
-      <td>Chris Carney</td>
-      <td>Chris.Carney@tn.gov</td>
       <td>2024-09-03 21:04:04+00:00</td>
       <td>Private</td>
       <td>10</td>
@@ -4904,9 +4886,6 @@ display(df_group_snapshot.head())
       <td></td>
       <td></td>
       <td>Standard</td>
-      <td>Chris.Carney_TNDOF8</td>
-      <td>Chris Carney</td>
-      <td>Chris.Carney@tn.gov</td>
       <td>2025-09-07 17:52:40+00:00</td>
       <td>Private</td>
       <td>7</td>
@@ -4924,9 +4903,6 @@ display(df_group_snapshot.head())
       <td></td>
       <td>Tennessee Department of Agriculture, Tennessee...</td>
       <td>Standard</td>
-      <td>colin.stiles_tndof</td>
-      <td>Colin Stiles</td>
-      <td>colin.stiles@tn.gov</td>
       <td>2021-07-12 15:19:05+00:00</td>
       <td>Organization</td>
       <td>61</td>
@@ -4944,9 +4920,6 @@ display(df_group_snapshot.head())
       <td></td>
       <td></td>
       <td>Standard</td>
-      <td>Chris.Carney_TNDOF8</td>
-      <td>Chris Carney</td>
-      <td>Chris.Carney@tn.gov</td>
       <td>2024-09-11 16:20:08+00:00</td>
       <td>Private</td>
       <td>3</td>
@@ -4964,9 +4937,6 @@ display(df_group_snapshot.head())
       <td></td>
       <td>LSF, perry, lewis, hickman, lewis state forest</td>
       <td>Standard</td>
-      <td>naomi.handley_TNDOF</td>
-      <td>Naomi Handley</td>
-      <td>naomi.handley@tn.gov</td>
       <td>2023-07-20 17:16:27+00:00</td>
       <td>Organization</td>
       <td>410</td>
@@ -7055,9 +7025,6 @@ print(f"Execution time: {time.perf_counter() - start_time:.2f}s")
       <th>0</th>
       <td>c908219d8bc44b1ebe748aa458d3279e</td>
       <td>Tracts</td>
-      <td>colin.stiles_tndof</td>
-      <td>Colin Stiles</td>
-      <td>colin.stiles@tn.gov</td>
       <td>Service Definition</td>
       <td>Stewardship, forest management, ArcGIS, Servic...</td>
       <td></td>
@@ -7078,9 +7045,6 @@ print(f"Execution time: {time.perf_counter() - start_time:.2f}s")
       <th>1</th>
       <td>99cb27600e1547a28b8f6d3a2513b33d</td>
       <td>Tracts</td>
-      <td>colin.stiles_tndof</td>
-      <td>Colin Stiles</td>
-      <td>colin.stiles@tn.gov</td>
       <td>Feature Service</td>
       <td>Stewardship, forest management, ArcGIS, Servic...</td>
       <td></td>
@@ -7101,9 +7065,6 @@ print(f"Execution time: {time.perf_counter() - start_time:.2f}s")
       <th>2</th>
       <td>60bffe37a3c545769f3adb650ce8dc89</td>
       <td>StewardshipStands</td>
-      <td>colin.stiles_tndof</td>
-      <td>Colin Stiles</td>
-      <td>colin.stiles@tn.gov</td>
       <td>Service Definition</td>
       <td>Forest Stewardship, stands, land use areas, Ar...</td>
       <td></td>
@@ -7124,9 +7085,6 @@ print(f"Execution time: {time.perf_counter() - start_time:.2f}s")
       <th>3</th>
       <td>0e7c981d883f490da0a973361794a8b7</td>
       <td>StewardshipStands</td>
-      <td>colin.stiles_tndof</td>
-      <td>Colin Stiles</td>
-      <td>colin.stiles@tn.gov</td>
       <td>Feature Service</td>
       <td>Forest Stewardship, stands, land use areas, Ar...</td>
       <td></td>
@@ -7147,9 +7105,6 @@ print(f"Execution time: {time.perf_counter() - start_time:.2f}s")
       <th>4</th>
       <td>91514904866b4b4093dd4048c62c33ba</td>
       <td>Priority_Fires_11_18_16</td>
-      <td>colin.stiles_tndof</td>
-      <td>Colin Stiles</td>
-      <td>colin.stiles@tn.gov</td>
       <td>Service Definition</td>
       <td>Fire Mapping,  Tennessee Fires</td>
       <td></td>
@@ -7987,10 +7942,10 @@ for df, table in tables_to_publish:
 print("\n✓ Content snapshot complete")
 ```
 
-    Upstream Dependencies table found (sublayer=6): https://www.arcgis.com/home/item.html?id=1ed3df79ff9447db8ad64ea37920711e&sublayer=6#data
+    Upstream Dependencies table found (sublayer=6): https://www.arcgis.com/home/item.html?id=1234567
 
 
-    Downstream Dependencies table found (sublayer=7): https://www.arcgis.com/home/item.html?id=1ed3df79ff9447db8ad64ea37920711e&sublayer=7#data
+    Downstream Dependencies table found (sublayer=7): https://www.arcgis.com/home/item.html?id=1234567
     
     Clearing existing records from table: Content
 
