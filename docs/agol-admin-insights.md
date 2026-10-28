@@ -245,7 +245,7 @@ print(f"  Last ran: {datetime.now()}")
     2026-07-01 12:02:50,739 - INFO - Feature service connection validated
 
 
-    ✓ Connected to Tennessee Division of Forestry
+    ✓ Connected to [Organization Name]
       Logged in as:  account_name
       Role:          org_admin
       Feature service: https://www.arcgis.com/home/item.html?id=1234567
@@ -4580,10 +4580,10 @@ display(df_group_snapshot.head())
     2026-07-01 12:09:59,620 - INFO - Retrieving roles(start=1, num=100)
 
 
-    2026-07-01 12:09:59,682 - INFO - Searching groups (q=* accountid:lvPBAGXeSupVUvx2, start=1, num=100)
+    2026-07-01 12:09:59,682 - INFO - Searching groups (q=* accountid:abc123XYZ000, start=1, num=100)
 
 
-    2026-07-01 12:09:59,880 - INFO - Searching items (q=group:eca6ceb3c1804fc6bfe726b7168705ff, bbox=None, start=1, num=100)
+    2026-07-01 12:09:59,880 - INFO - Searching items (q=group:000000000000000000000000000001, bbox=None, start=1, num=100)
 
 
     Groups found     : 70
@@ -4591,232 +4591,232 @@ display(df_group_snapshot.head())
     Analyzing 70 groups...
 
 
-    2026-07-01 12:10:00,195 - INFO - Searching items (q=group:22d64941839d4e16a1d0ee181978c140, bbox=None, start=1, num=100)
+    2026-07-01 12:10:00,195 - INFO - Searching items (q=group:000000000000000000000000000002, bbox=None, start=1, num=100)
 
 
-    2026-07-01 12:10:00,481 - INFO - Searching items (q=group:b8c1a16bc2b54822be8ca9539c444a07, bbox=None, start=1, num=100)
+    2026-07-01 12:10:00,481 - INFO - Searching items (q=group:000000000000000000000000000003, bbox=None, start=1, num=100)
 
 
-    2026-07-01 12:10:01,185 - INFO - Searching items (q=group:81cd49e96cae4b1cb6ad2a499e5bc40a, bbox=None, start=1, num=100)
+    2026-07-01 12:10:01,185 - INFO - Searching items (q=group:000000000000000000000000000004, bbox=None, start=1, num=100)
 
 
-    2026-07-01 12:10:03,001 - INFO - Searching items (q=group:210065dc46784a9f880fc0ff8fae3f5e, bbox=None, start=1, num=100)
+    2026-07-01 12:10:03,001 - INFO - Searching items (q=group:000000000000000000000000000005, bbox=None, start=1, num=100)
 
 
-    2026-07-01 12:10:03,681 - INFO - Searching items (q=group:210065dc46784a9f880fc0ff8fae3f5e, bbox=None, start=101, num=100)
+    2026-07-01 12:10:03,681 - INFO - Searching items (q=group:000000000000000000000000000006, bbox=None, start=101, num=100)
 
 
-    2026-07-01 12:10:04,927 - INFO - Searching items (q=group:210065dc46784a9f880fc0ff8fae3f5e, bbox=None, start=201, num=100)
+    2026-07-01 12:10:04,927 - INFO - Searching items (q=group:000000000000000000000000000007, bbox=None, start=201, num=100)
 
 
-    2026-07-01 12:10:05,090 - INFO - Searching items (q=group:210065dc46784a9f880fc0ff8fae3f5e, bbox=None, start=301, num=100)
+    2026-07-01 12:10:05,090 - INFO - Searching items (q=group:000000000000000000000000000008, bbox=None, start=301, num=100)
 
 
-    2026-07-01 12:10:05,197 - INFO - Searching items (q=group:210065dc46784a9f880fc0ff8fae3f5e, bbox=None, start=401, num=100)
+    2026-07-01 12:10:05,197 - INFO - Searching items (q=group:000000000000000000000000000009, bbox=None, start=401, num=100)
 
 
     2026-07-01 12:10:05,406 - INFO - Retrieving roles(start=1, num=100)
 
 
-    2026-07-01 12:10:05,645 - INFO - Searching items (q=group:bb68e509e7ca4ac1a97369b0ff768d59, bbox=None, start=1, num=100)
+    2026-07-01 12:10:05,645 - INFO - Searching items (q=group:000000000000000000000000000010, bbox=None, start=1, num=100)
 
 
-    2026-07-01 12:10:06,023 - INFO - Searching items (q=group:db429aa3cfbf4e29aaf2767195f0a57b, bbox=None, start=1, num=100)
+    2026-07-01 12:10:06,023 - INFO - Searching items (q=group:000000000000000000000000000011, bbox=None, start=1, num=100)
 
 
-    2026-07-01 12:10:06,260 - INFO - Searching items (q=group:db429aa3cfbf4e29aaf2767195f0a57b, bbox=None, start=101, num=100)
+    2026-07-01 12:10:06,260 - INFO - Searching items (q=group:000000000000000000000000000012, bbox=None, start=101, num=100)
 
 
-    2026-07-01 12:10:06,676 - INFO - Searching items (q=group:aa51241663b94155bdd31a25322c8db9, bbox=None, start=1, num=100)
+    2026-07-01 12:10:06,676 - INFO - Searching items (q=group:000000000000000000000000000013, bbox=None, start=1, num=100)
 
 
-    2026-07-01 12:10:07,044 - INFO - Searching items (q=group:c1931d90aa3a41559db26a40d269ef1e, bbox=None, start=1, num=100)
+    2026-07-01 12:10:07,044 - INFO - Searching items (q=group:000000000000000000000000000014, bbox=None, start=1, num=100)
 
 
-    2026-07-01 12:10:07,350 - INFO - Searching items (q=group:8127c337f00741ce8543d278adef33f8, bbox=None, start=1, num=100)
+    2026-07-01 12:10:07,350 - INFO - Searching items (q=group:000000000000000000000000000015, bbox=None, start=1, num=100)
 
 
-    2026-07-01 12:10:07,760 - INFO - Searching items (q=group:6f6804c2dd994e11a674060ac2cd1734, bbox=None, start=1, num=100)
+    2026-07-01 12:10:07,760 - INFO - Searching items (q=group:000000000000000000000000000016, bbox=None, start=1, num=100)
 
 
-    2026-07-01 12:10:08,401 - INFO - Searching items (q=group:c5b34f1f13a44651a7b6717016b1a9e0, bbox=None, start=1, num=100)
+    2026-07-01 12:10:08,401 - INFO - Searching items (q=group:000000000000000000000000000017, bbox=None, start=1, num=100)
 
 
-    2026-07-01 12:10:08,831 - INFO - Searching items (q=group:a0496e9f4aa34c14ae681d224509d7d9, bbox=None, start=1, num=100)
+    2026-07-01 12:10:08,831 - INFO - Searching items (q=group:000000000000000000000000000018, bbox=None, start=1, num=100)
 
 
-    2026-07-01 12:10:09,310 - INFO - Searching items (q=group:b89134501d0b4879884b01da498fe8e6, bbox=None, start=1, num=100)
+    2026-07-01 12:10:09,310 - INFO - Searching items (q=group:000000000000000000000000000019, bbox=None, start=1, num=100)
 
 
-    2026-07-01 12:10:09,679 - INFO - Searching items (q=group:be7fd329a50a42eca7c6cf76900e2719, bbox=None, start=1, num=100)
+    2026-07-01 12:10:09,679 - INFO - Searching items (q=group:000000000000000000000000000020, bbox=None, start=1, num=100)
 
 
-    2026-07-01 12:10:10,034 - INFO - Searching items (q=group:ee48ffe579c845088dc8f4347e5439e8, bbox=None, start=1, num=100)
+    2026-07-01 12:10:10,034 - INFO - Searching items (q=group:000000000000000000000000000021, bbox=None, start=1, num=100)
 
 
-    2026-07-01 12:10:10,353 - INFO - Searching items (q=group:f9d040905f894c1c9f274f7e93091a47, bbox=None, start=1, num=100)
+    2026-07-01 12:10:10,353 - INFO - Searching items (q=group:000000000000000000000000000022, bbox=None, start=1, num=100)
 
 
-    2026-07-01 12:10:10,723 - INFO - Searching items (q=group:397791e8c9114fd7a1c76485d491e136, bbox=None, start=1, num=100)
+    2026-07-01 12:10:10,723 - INFO - Searching items (q=group:000000000000000000000000000023, bbox=None, start=1, num=100)
 
 
-    2026-07-01 12:10:11,039 - INFO - Searching items (q=group:71ea9c6d1a7045a4b381301cef580bea, bbox=None, start=1, num=100)
+    2026-07-01 12:10:11,039 - INFO - Searching items (q=group:000000000000000000000000000024, bbox=None, start=1, num=100)
 
 
-    2026-07-01 12:10:11,345 - INFO - Searching items (q=group:1cdb2b36db1c4250bc93437847b7c93b, bbox=None, start=1, num=100)
+    2026-07-01 12:10:11,345 - INFO - Searching items (q=group:000000000000000000000000000025, bbox=None, start=1, num=100)
 
 
-    2026-07-01 12:10:11,696 - INFO - Searching items (q=group:b7130ef8428a473b91ea033839a05d27, bbox=None, start=1, num=100)
+    2026-07-01 12:10:11,696 - INFO - Searching items (q=group:000000000000000000000000000026, bbox=None, start=1, num=100)
 
 
-    2026-07-01 12:10:12,137 - INFO - Searching items (q=group:1c8bd2b6be584077b40f431aa2d9f579, bbox=None, start=1, num=100)
+    2026-07-01 12:10:12,137 - INFO - Searching items (q=group:000000000000000000000000000027, bbox=None, start=1, num=100)
 
 
-    2026-07-01 12:10:12,588 - INFO - Searching items (q=group:e16725a7402347e8a16191b4ac42d869, bbox=None, start=1, num=100)
+    2026-07-01 12:10:12,588 - INFO - Searching items (q=group:000000000000000000000000000028, bbox=None, start=1, num=100)
 
 
-    2026-07-01 12:10:13,077 - INFO - Searching items (q=group:737a820808ce457dbc86710ac69707c2, bbox=None, start=1, num=100)
+    2026-07-01 12:10:13,077 - INFO - Searching items (q=group:000000000000000000000000000029, bbox=None, start=1, num=100)
 
 
-    2026-07-01 12:10:13,360 - INFO - Searching items (q=group:6c77495d776e4110ab0e749c13dcc70d, bbox=None, start=1, num=100)
+    2026-07-01 12:10:13,360 - INFO - Searching items (q=group:000000000000000000000000000030, bbox=None, start=1, num=100)
 
 
-    2026-07-01 12:10:13,723 - INFO - Searching items (q=group:a8e4b97ce0674dea84058c2f49d4d297, bbox=None, start=1, num=100)
+    2026-07-01 12:10:13,723 - INFO - Searching items (q=group:000000000000000000000000000031, bbox=None, start=1, num=100)
 
 
-    2026-07-01 12:10:14,111 - INFO - Searching items (q=group:7fd74f262e4947eea065a89ed43ff8da, bbox=None, start=1, num=100)
+    2026-07-01 12:10:14,111 - INFO - Searching items (q=group:000000000000000000000000000032, bbox=None, start=1, num=100)
 
 
-    2026-07-01 12:10:14,463 - INFO - Searching items (q=group:b90f7fd2f2c14fdabeea9f0ffde30077, bbox=None, start=1, num=100)
+    2026-07-01 12:10:14,463 - INFO - Searching items (q=group:000000000000000000000000000033, bbox=None, start=1, num=100)
 
 
-    2026-07-01 12:10:14,769 - INFO - Searching items (q=group:8a2a106c2772427db6b95e4f795a8b88, bbox=None, start=1, num=100)
+    2026-07-01 12:10:14,769 - INFO - Searching items (q=group:000000000000000000000000000034, bbox=None, start=1, num=100)
 
 
-    2026-07-01 12:10:15,177 - INFO - Searching items (q=group:fc2cf779ab814a5a8ccf0fc3a349686e, bbox=None, start=1, num=100)
+    2026-07-01 12:10:15,177 - INFO - Searching items (q=group:000000000000000000000000000035, bbox=None, start=1, num=100)
 
 
-    2026-07-01 12:10:15,533 - INFO - Searching items (q=group:0e1f71113ad8482384d56118cb731f33, bbox=None, start=1, num=100)
+    2026-07-01 12:10:15,533 - INFO - Searching items (q=group:000000000000000000000000000036, bbox=None, start=1, num=100)
 
 
-    2026-07-01 12:10:15,937 - INFO - Searching items (q=group:e200013518ff4c8c9be3753743a2808e, bbox=None, start=1, num=100)
+    2026-07-01 12:10:15,937 - INFO - Searching items (q=group:000000000000000000000000000037, bbox=None, start=1, num=100)
 
 
-    2026-07-01 12:10:16,330 - INFO - Searching items (q=group:b13cd245a3e040c1893efe98d4f6173c, bbox=None, start=1, num=100)
+    2026-07-01 12:10:16,330 - INFO - Searching items (q=group:000000000000000000000000000038, bbox=None, start=1, num=100)
 
 
-    2026-07-01 12:10:16,726 - INFO - Searching items (q=group:8658a8a71c6e43b3a29667cb2a5f2a9b, bbox=None, start=1, num=100)
+    2026-07-01 12:10:16,726 - INFO - Searching items (q=group:000000000000000000000000000039, bbox=None, start=1, num=100)
 
 
-    2026-07-01 12:10:17,101 - INFO - Searching items (q=group:86fc052f386a43d7bfaf8a1acb705629, bbox=None, start=1, num=100)
+    2026-07-01 12:10:17,101 - INFO - Searching items (q=group:000000000000000000000000000040, bbox=None, start=1, num=100)
 
 
-    2026-07-01 12:10:17,523 - INFO - Searching items (q=group:f69359a45a1942788ce44bf4b121c08e, bbox=None, start=1, num=100)
+    2026-07-01 12:10:17,523 - INFO - Searching items (q=group:000000000000000000000000000041, bbox=None, start=1, num=100)
 
 
-    2026-07-01 12:10:17,949 - INFO - Searching items (q=group:55ad52680fb54a61a066e11db650d562, bbox=None, start=1, num=100)
+    2026-07-01 12:10:17,949 - INFO - Searching items (q=group:000000000000000000000000000042, bbox=None, start=1, num=100)
 
 
-    2026-07-01 12:10:18,329 - INFO - Searching items (q=group:906035e0fb484e809351eadb46ce28df, bbox=None, start=1, num=100)
+    2026-07-01 12:10:18,329 - INFO - Searching items (q=group:000000000000000000000000000043, bbox=None, start=1, num=100)
 
 
-    2026-07-01 12:10:18,699 - INFO - Searching items (q=group:940a9ec344f14e8c99a2aed806a880e0, bbox=None, start=1, num=100)
+    2026-07-01 12:10:18,699 - INFO - Searching items (q=group:000000000000000000000000000044, bbox=None, start=1, num=100)
 
 
-    2026-07-01 12:10:19,141 - INFO - Searching items (q=group:439358664c7b4c50bcaa43e93df1d351, bbox=None, start=1, num=100)
+    2026-07-01 12:10:19,141 - INFO - Searching items (q=group:000000000000000000000000000045, bbox=None, start=1, num=100)
 
 
-    2026-07-01 12:10:19,496 - INFO - Searching items (q=group:4b60b042bbe04e7eab5333f7276e49ef, bbox=None, start=1, num=100)
+    2026-07-01 12:10:19,496 - INFO - Searching items (q=group:000000000000000000000000000046, bbox=None, start=1, num=100)
 
 
-    2026-07-01 12:10:19,868 - INFO - Searching items (q=group:b18bba60036840f1b93fd04d931fece0, bbox=None, start=1, num=100)
+    2026-07-01 12:10:19,868 - INFO - Searching items (q=group:000000000000000000000000000047, bbox=None, start=1, num=100)
 
 
-    2026-07-01 12:10:20,230 - INFO - Searching items (q=group:4f226868e6b34283ad4e29073e4886cb, bbox=None, start=1, num=100)
+    2026-07-01 12:10:20,230 - INFO - Searching items (q=group:000000000000000000000000000048, bbox=None, start=1, num=100)
 
 
-    2026-07-01 12:10:20,580 - INFO - Searching items (q=group:68279e97ae954edc9c8497be2dc15149, bbox=None, start=1, num=100)
+    2026-07-01 12:10:20,580 - INFO - Searching items (q=group:000000000000000000000000000049, bbox=None, start=1, num=100)
 
 
-    2026-07-01 12:10:20,939 - INFO - Searching items (q=group:d450999133024d1593c9ba4438916168, bbox=None, start=1, num=100)
+    2026-07-01 12:10:20,939 - INFO - Searching items (q=group:000000000000000000000000000050, bbox=None, start=1, num=100)
 
 
-    2026-07-01 12:10:21,317 - INFO - Searching items (q=group:14e4dfa86ffe47a3ad5340e8b9c51d9e, bbox=None, start=1, num=100)
+    2026-07-01 12:10:21,317 - INFO - Searching items (q=group:000000000000000000000000000051, bbox=None, start=1, num=100)
 
 
-    2026-07-01 12:10:21,692 - INFO - Searching items (q=group:bbdd4b6c21594ed6856ad0c22b73eeff, bbox=None, start=1, num=100)
+    2026-07-01 12:10:21,692 - INFO - Searching items (q=group:000000000000000000000000000052, bbox=None, start=1, num=100)
 
 
-    2026-07-01 12:10:22,127 - INFO - Searching items (q=group:4d13e8792fbf478db3651db78019b622, bbox=None, start=1, num=100)
+    2026-07-01 12:10:22,127 - INFO - Searching items (q=group:000000000000000000000000000053, bbox=None, start=1, num=100)
 
 
-    2026-07-01 12:10:22,398 - INFO - Searching items (q=group:5341638febd749b6b68877f187815599, bbox=None, start=1, num=100)
+    2026-07-01 12:10:22,398 - INFO - Searching items (q=group:000000000000000000000000000054, bbox=None, start=1, num=100)
 
 
-    2026-07-01 12:10:22,889 - INFO - Searching items (q=group:703f5c3679d34263a469a3d950188a1d, bbox=None, start=1, num=100)
+    2026-07-01 12:10:22,889 - INFO - Searching items (q=group:000000000000000000000000000055, bbox=None, start=1, num=100)
 
 
-    2026-07-01 12:10:23,250 - INFO - Searching items (q=group:bbb09f8a420d45e3ab436dca7036c4d1, bbox=None, start=1, num=100)
+    2026-07-01 12:10:23,250 - INFO - Searching items (q=group:000000000000000000000000000056, bbox=None, start=1, num=100)
 
 
       Progress: 50/70 (71.4%) | elapsed 23.4s | avg 0.467s/item | ETA 0.2 min
 
 
-    2026-07-01 12:10:24,034 - INFO - Searching items (q=group:60b1b53ea74b4e07b4654cd4d0e81a23, bbox=None, start=1, num=100)
+    2026-07-01 12:10:24,034 - INFO - Searching items (q=group:000000000000000000000000000057, bbox=None, start=1, num=100)
 
 
-    2026-07-01 12:10:24,414 - INFO - Searching items (q=group:3a5d8fe865c34305b7e9fb9f9450dd35, bbox=None, start=1, num=100)
+    2026-07-01 12:10:24,414 - INFO - Searching items (q=group:000000000000000000000000000058, bbox=None, start=1, num=100)
 
 
-    2026-07-01 12:10:24,908 - INFO - Searching items (q=group:bbf12754e331496f98067d5fdb0a24f0, bbox=None, start=1, num=100)
+    2026-07-01 12:10:24,908 - INFO - Searching items (q=group:000000000000000000000000000059, bbox=None, start=1, num=100)
 
 
-    2026-07-01 12:10:25,280 - INFO - Searching items (q=group:53450eed4e384a798074184c07b2ada0, bbox=None, start=1, num=100)
+    2026-07-01 12:10:25,280 - INFO - Searching items (q=group:000000000000000000000000000060, bbox=None, start=1, num=100)
 
 
-    2026-07-01 12:10:25,657 - INFO - Searching items (q=group:b5d6e159d491414b93e3a29fcd7a02f8, bbox=None, start=1, num=100)
+    2026-07-01 12:10:25,657 - INFO - Searching items (q=group:000000000000000000000000000061, bbox=None, start=1, num=100)
 
 
-    2026-07-01 12:10:26,118 - INFO - Searching items (q=group:679309d9cf42408d86ab2d2af89c369a, bbox=None, start=1, num=100)
+    2026-07-01 12:10:26,118 - INFO - Searching items (q=group:000000000000000000000000000062, bbox=None, start=1, num=100)
 
 
-    2026-07-01 12:10:26,503 - INFO - Searching items (q=group:24228e9596cb40d69e2e13dcda5c3b7a, bbox=None, start=1, num=100)
+    2026-07-01 12:10:26,503 - INFO - Searching items (q=group:000000000000000000000000000063, bbox=None, start=1, num=100)
 
 
-    2026-07-01 12:10:26,991 - INFO - Searching items (q=group:ba772b5f4ff64b12b3af39a3ecb466d4, bbox=None, start=1, num=100)
+    2026-07-01 12:10:26,991 - INFO - Searching items (q=group:000000000000000000000000000064, bbox=None, start=1, num=100)
 
 
-    2026-07-01 12:10:27,352 - INFO - Searching items (q=group:97315c93f73e4c7ab3e57a439c964c83, bbox=None, start=1, num=100)
+    2026-07-01 12:10:27,352 - INFO - Searching items (q=group:000000000000000000000000000065, bbox=None, start=1, num=100)
 
 
-    2026-07-01 12:10:27,725 - INFO - Searching items (q=group:0a31c5c020004cb39eb71d5aca9cd514, bbox=None, start=1, num=100)
+    2026-07-01 12:10:27,725 - INFO - Searching items (q=group:000000000000000000000000000066, bbox=None, start=1, num=100)
 
 
-    2026-07-01 12:10:28,167 - INFO - Searching items (q=group:012e575bb03f422f90c3066e590a1b2a, bbox=None, start=1, num=100)
+    2026-07-01 12:10:28,167 - INFO - Searching items (q=group:000000000000000000000000000067, bbox=None, start=1, num=100)
 
 
-    2026-07-01 12:10:28,474 - INFO - Searching items (q=group:dad50cbeb44343dfa35fa3a3eb1f3ce0, bbox=None, start=1, num=100)
+    2026-07-01 12:10:28,474 - INFO - Searching items (q=group:000000000000000000000000000068, bbox=None, start=1, num=100)
 
 
-    2026-07-01 12:10:28,814 - INFO - Searching items (q=group:45618dbadd454bc5ba026bfb90ad87ce, bbox=None, start=1, num=100)
+    2026-07-01 12:10:28,814 - INFO - Searching items (q=group:000000000000000000000000000069, bbox=None, start=1, num=100)
 
 
-    2026-07-01 12:10:29,759 - INFO - Searching items (q=group:e7223136a375404d9e18c09c49600072, bbox=None, start=1, num=100)
+    2026-07-01 12:10:29,759 - INFO - Searching items (q=group:000000000000000000000000000070, bbox=None, start=1, num=100)
 
 
-    2026-07-01 12:10:30,405 - INFO - Searching items (q=group:f186b31574b94f6e8da1035495dfa769, bbox=None, start=1, num=100)
+    2026-07-01 12:10:30,405 - INFO - Searching items (q=group:000000000000000000000000000071, bbox=None, start=1, num=100)
 
 
-    2026-07-01 12:10:30,796 - INFO - Searching items (q=group:a183e82a059447d590612aef13087420, bbox=None, start=1, num=100)
+    2026-07-01 12:10:30,796 - INFO - Searching items (q=group:000000000000000000000000000072, bbox=None, start=1, num=100)
 
 
-    2026-07-01 12:10:31,213 - INFO - Searching items (q=group:7959693e4c0944ce9799adefec325a02, bbox=None, start=1, num=100)
+    2026-07-01 12:10:31,213 - INFO - Searching items (q=group:000000000000000000000000000073, bbox=None, start=1, num=100)
 
 
-    2026-07-01 12:10:31,566 - INFO - Searching items (q=group:5650e64112764e2e91546852678102a4, bbox=None, start=1, num=100)
+    2026-07-01 12:10:31,566 - INFO - Searching items (q=group:000000000000000000000000000074, bbox=None, start=1, num=100)
 
 
-    2026-07-01 12:10:31,945 - INFO - Searching items (q=group:ab9f87368c6d4457bfa883730a69ad02, bbox=None, start=1, num=100)
+    2026-07-01 12:10:31,945 - INFO - Searching items (q=group:000000000000000000000000000075, bbox=None, start=1, num=100)
 
 
       Progress: 70/70 (100.0%) | elapsed 32.5s | avg 0.464s/item | ETA 0.0 min
@@ -4863,8 +4863,8 @@ display(df_group_snapshot.head())
   <tbody>
     <tr>
       <th>0</th>
-      <td>eca6ceb3c1804fc6bfe726b7168705ff</td>
-      <td>2024 Division TDF ORR</td>
+      <td>a1b2c3d4e5f647a8b9c0d1e2f3a4b5c6</td>
+      <td>2026 Regional Field Ops</td>
       <td></td>
       <td></td>
       <td></td>
@@ -4876,12 +4876,12 @@ display(df_group_snapshot.head())
       <td>16</td>
       <td>408.80</td>
       <td>116</td>
-      <td>https://www.arcgis.com/home/group.html?id=eca6...</td>
+      <td>https://www.arcgis.com/home/group.html?id=a1b2...</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>22d64941839d4e16a1d0ee181978c140</td>
-      <td>2025 ORNL OPS</td>
+      <td>f1e2d3c4b5a647d8e9f0a1b2c3d4e5f6</td>
+      <td>Program Support Group</td>
       <td></td>
       <td></td>
       <td></td>
@@ -4893,15 +4893,15 @@ display(df_group_snapshot.head())
       <td>38</td>
       <td>678.57</td>
       <td>116</td>
-      <td>https://www.arcgis.com/home/group.html?id=22d6...</td>
+      <td>https://www.arcgis.com/home/group.html?id=f1e2...</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>b8c1a16bc2b54822be8ca9539c444a07</td>
-      <td>AGOL Admins</td>
-      <td>This group includes TDF leadership positions t...</td>
+      <td>9a8b7c6d5e4f4a3b2c1d0e9f8a7b6c5d</td>
+      <td>Org Admins</td>
+      <td>This group includes leadership positions tasked wit...</td>
       <td></td>
-      <td>Tennessee Department of Agriculture, Tennessee...</td>
+      <td>admin, leadership, governance</td>
       <td>Standard</td>
       <td>2021-07-12 15:19:05+00:00</td>
       <td>Organization</td>
@@ -4910,45 +4910,13 @@ display(df_group_snapshot.head())
       <td>10</td>
       <td>2609.15</td>
       <td>1</td>
-      <td>https://www.arcgis.com/home/group.html?id=b8c1...</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>81cd49e96cae4b1cb6ad2a499e5bc40a</td>
-      <td>Area 502</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td>Standard</td>
-      <td>2024-09-11 16:20:08+00:00</td>
-      <td>Private</td>
-      <td>3</td>
-      <td>4</td>
-      <td>4</td>
-      <td>82.67</td>
-      <td>670</td>
-      <td>https://www.arcgis.com/home/group.html?id=81cd...</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>210065dc46784a9f880fc0ff8fae3f5e</td>
-      <td>Area 508</td>
-      <td>Counties covered by 508 area forester (Hickman...</td>
-      <td></td>
-      <td>LSF, perry, lewis, hickman, lewis state forest</td>
-      <td>Standard</td>
-      <td>2023-07-20 17:16:27+00:00</td>
-      <td>Organization</td>
-      <td>410</td>
-      <td>10</td>
-      <td>10</td>
-      <td>117.82</td>
-      <td>35</td>
-      <td>https://www.arcgis.com/home/group.html?id=2100...</td>
+      <td>https://www.arcgis.com/home/group.html?id=9a8b...</td>
     </tr>
   </tbody>
 </table>
 </div>
+
+*Note: rows above are illustrative examples with generic placeholder identifiers and names; the full output in a real run would list each group in the organization.*
 
 
 ### Step 3b.2 Publish Groups Table
@@ -7023,10 +6991,10 @@ print(f"Execution time: {time.perf_counter() - start_time:.2f}s")
   <tbody>
     <tr>
       <th>0</th>
-      <td>c908219d8bc44b1ebe748aa458d3279e</td>
-      <td>Tracts</td>
+      <td>aaaa1111bbbb2222cccc3333dddd4444</td>
+      <td>SampleLayer</td>
       <td>Service Definition</td>
-      <td>Stewardship, forest management, ArcGIS, Servic...</td>
+      <td>Example, template, ArcGIS, Servic...</td>
       <td></td>
       <td></td>
       <td>3</td>
@@ -7037,16 +7005,16 @@ print(f"Execution time: {time.perf_counter() - start_time:.2f}s")
       <td>40</td>
       <td>155</td>
       <td>None</td>
-      <td>https://www.arcgis.com/home/item.html?id=c9082...</td>
+      <td>https://www.arcgis.com/home/item.html?id=aaaa...</td>
       <td>5.44</td>
       <td>0.0</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>99cb27600e1547a28b8f6d3a2513b33d</td>
-      <td>Tracts</td>
+      <td>bbbb2222cccc3333dddd4444eeee5555</td>
+      <td>SampleLayer</td>
       <td>Feature Service</td>
-      <td>Stewardship, forest management, ArcGIS, Servic...</td>
+      <td>Example, template, ArcGIS, Servic...</td>
       <td></td>
       <td></td>
       <td>292</td>
@@ -7057,38 +7025,18 @@ print(f"Execution time: {time.perf_counter() - start_time:.2f}s")
       <td>40</td>
       <td>155</td>
       <td>None</td>
-      <td>https://www.arcgis.com/home/item.html?id=99cb2...</td>
+      <td>https://www.arcgis.com/home/item.html?id=bbbb...</td>
       <td>32.90</td>
       <td>0.0</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>60bffe37a3c545769f3adb650ce8dc89</td>
-      <td>StewardshipStands</td>
-      <td>Service Definition</td>
-      <td>Forest Stewardship, stands, land use areas, Ar...</td>
-      <td></td>
-      <td>Forest Stewardship stand polygosn</td>
-      <td>2</td>
-      <td>05/11/2016 17:09</td>
-      <td>01/26/2026 15:22</td>
-      <td>12/31/1969 23:59</td>
-      <td>Private</td>
-      <td>83</td>
-      <td>155</td>
-      <td>None</td>
-      <td>https://www.arcgis.com/home/item.html?id=60bff...</td>
-      <td>5.53</td>
-      <td>0.0</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>0e7c981d883f490da0a973361794a8b7</td>
-      <td>StewardshipStands</td>
+      <td>cccc3333dddd4444eeee5555ffff6666</td>
+      <td>SampleStands</td>
       <td>Feature Service</td>
-      <td>Forest Stewardship, stands, land use areas, Ar...</td>
+      <td>Example stand polygons, land use areas, Ar...</td>
       <td></td>
-      <td>Forest Stewardship stand polygosn</td>
+      <td>Example stand polygon layer</td>
       <td>80</td>
       <td>05/11/2016 17:09</td>
       <td>01/26/2026 15:24</td>
@@ -7097,33 +7045,15 @@ print(f"Execution time: {time.perf_counter() - start_time:.2f}s")
       <td>83</td>
       <td>155</td>
       <td>None</td>
-      <td>https://www.arcgis.com/home/item.html?id=0e7c9...</td>
-      <td>33.12</td>
-      <td>0.0</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>91514904866b4b4093dd4048c62c33ba</td>
-      <td>Priority_Fires_11_18_16</td>
-      <td>Service Definition</td>
-      <td>Fire Mapping,  Tennessee Fires</td>
-      <td></td>
-      <td>Flight plan for Lakota</td>
-      <td>1</td>
-      <td>11/18/2016 11:13</td>
-      <td>01/26/2026 15:26</td>
-      <td>12/31/1969 23:59</td>
-      <td>Private</td>
-      <td>53</td>
-      <td>155</td>
-      <td>None</td>
-      <td>https://www.arcgis.com/home/item.html?id=91514...</td>
+      <td>https://www.arcgis.com/home/item.html?id=cccc...</td>
       <td>0.06</td>
       <td>0.0</td>
     </tr>
   </tbody>
 </table>
 </div>
+
+*Note: rows above are illustrative examples with generic placeholder identifiers, titles, and tags; the full output in a real run would list every item returned by the content governance search.*
 
 
     Execution time: 127.62s
