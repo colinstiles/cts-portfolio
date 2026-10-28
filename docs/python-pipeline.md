@@ -4,6 +4,8 @@ Version: v10 direct hosted feature service publish.
 
 This notebook reads the TDF Buildings workbook, applies reviewer-managed overrides, geocodes addresses, validates geocode results, and publishes a simplified operational hosted feature layer schema by directly creating a hosted feature service and adding a named point layer. Full QA fields remain available in the generated CSV outputs but are not published to the feature layer.
 
+> **Note:** All printed/executed outputs shown below (dataframe previews, QA tables, geocode results, and the published-item summary) use illustrative, sanitized sample data. Real source file names, building names, street addresses, item IDs, and account/organization details have been replaced with generic placeholders.
+
 
 ## Table of Contents
 
@@ -183,7 +185,7 @@ CONFIG
 
 
 
-    NotebookConfig(project_name='', source_path=PosixPath('/arcgis/home/tdf_facilities/RPP 2026 AGR Building & Land Status Check.xlsx'), sheet_name='Buildings', header_row=1, excel_engine='openpyxl', output_dir=PosixPath('/arcgis/home/tdf_facilities/tdf_buildings_outputs'), log_dir=PosixPath('/arcgis/home/tdf_facilities/tdf_buildings_outputs/logs'), manual_overrides_file_name='tdf_buildings_manual_overrides.csv', run_geocoding=False, run_publish=True, geocode_score_min=85, geocode_mode='single', geocode_batch_size=None, geocode_delay_seconds=0.25, source_country='USA', geocode_location_type='rooftop', geocode_category=None, geocode_cache_version='v2_result_validation', force_regeocode=False, max_allowed_suspect_assignments=10, minimum_publish_ready_records=1, write_full_geocode_review=True, coordinate_min_latitude=34.0, coordinate_max_latitude=37.5, coordinate_min_longitude=-91.5, coordinate_max_longitude=-80.5, publish_title='TDF Buildings and Facilities', publish_service_name='TDF_Buildings_and_Facilities', publish_layer_name='TDF Buildings and Facilities', allow_service_name_suffix_if_unavailable=False, max_record_count=2000, publish_tags=('TDF', 'Buildings', 'Facilities', 'Assets', 'Bureaus Veritas'), publish_summary='Point locations for buildings owned and managed by Tennessee Division of Forestry.', publish_description='This hosted feature layer is generated from the Buildings worksheet in the RPP building and land status workbook. Coordinates are produced from address geocoding, reviewer-managed manual overrides, and notebook QA outputs. This layer is intended for planning, asset management, and public-information workflows. It is not a legal survey or substitute for official deeds, surveys, or property records.', feature_layer_item_id='', refresh_strategy='upsert', sync_key_field='building_code', upsert_delete_missing_records=True, publish_batch_size=200, truncate_async=False)
+    NotebookConfig(project_name='', source_path=PosixPath('/arcgis/home/tdf_facilities/buildings_workbook.xlsx'), sheet_name='Buildings', header_row=1, excel_engine='openpyxl', output_dir=PosixPath('/arcgis/home/tdf_facilities/tdf_buildings_outputs'), log_dir=PosixPath('/arcgis/home/tdf_facilities/tdf_buildings_outputs/logs'), manual_overrides_file_name='tdf_buildings_manual_overrides.csv', run_geocoding=False, run_publish=True, geocode_score_min=85, geocode_mode='single', geocode_batch_size=None, geocode_delay_seconds=0.25, source_country='USA', geocode_location_type='rooftop', geocode_category=None, geocode_cache_version='v2_result_validation', force_regeocode=False, max_allowed_suspect_assignments=10, minimum_publish_ready_records=1, write_full_geocode_review=True, coordinate_min_latitude=34.0, coordinate_max_latitude=37.5, coordinate_min_longitude=-91.5, coordinate_max_longitude=-80.5, publish_title='TDF Buildings and Facilities', publish_service_name='TDF_Buildings_and_Facilities', publish_layer_name='TDF Buildings and Facilities', allow_service_name_suffix_if_unavailable=False, max_record_count=2000, publish_tags=('TDF', 'Buildings', 'Facilities', 'Assets', 'Template'), publish_summary='Point locations for buildings owned and managed by Tennessee Division of Forestry.', publish_description='This hosted feature layer is generated from the Buildings worksheet in the source workbook. Coordinates are produced from address geocoding, reviewer-managed manual overrides, and notebook QA outputs. This layer is intended for planning, asset management, and public-information workflows. It is not a legal survey or substitute for official deeds, surveys, or property records.', feature_layer_item_id='', refresh_strategy='upsert', sync_key_field='building_code', upsert_delete_missing_records=True, publish_batch_size=200, truncate_async=False)
 
 
 
@@ -316,98 +318,99 @@ display(raw.head())
   <tbody>
     <tr>
       <th>0</th>
-      <td>10000006</td>
-      <td>Holston Mtn Radio Building</td>
-      <td>National Forest 56</td>
-      <td>ELIZABETHTON</td>
-      <td>TN</td>
-      <td>37643</td>
-      <td>CARTER</td>
+      <td>Example Value</td>
+      <td>Example Value</td>
+      <td>Example Value</td>
+      <td>Example Value</td>
+      <td>Example Value</td>
+      <td>Example Value</td>
+      <td>EXAMPLE COUNTY</td>
       <td>600</td>
-      <td>Long Term 15+ yrs</td>
-      <td>Antenna/Tower</td>
-      <td>Current Mission Need</td>
-      <td>Utilized</td>
-      <td>Not Evaluated</td>
-      <td>Active</td>
-      <td>NaN</td>
+      <td>Example Value</td>
+      <td>Example Value</td>
+      <td>Example Value</td>
+      <td>Example Value</td>
+      <td>Example Value</td>
+      <td>Example Value</td>
+      <td></td>
     </tr>
     <tr>
       <th>1</th>
-      <td>10010001</td>
-      <td>Carter County Residence</td>
-      <td>2651 Gap Creek Road</td>
-      <td>HAMPTON</td>
-      <td>TN</td>
-      <td>37658</td>
-      <td>CARTER</td>
+      <td>Example Value</td>
+      <td>Example Value</td>
+      <td>Example Value</td>
+      <td>Example Value</td>
+      <td>Example Value</td>
+      <td>Example Value</td>
+      <td>EXAMPLE COUNTY</td>
       <td>1400</td>
-      <td>Long Term 15+ yrs</td>
-      <td>Residential</td>
-      <td>Current Mission Need</td>
-      <td>Utilized</td>
-      <td>Not Evaluated</td>
-      <td>Active</td>
-      <td>NaN</td>
+      <td>Example Value</td>
+      <td>Example Value</td>
+      <td>Example Value</td>
+      <td>Example Value</td>
+      <td>Example Value</td>
+      <td>Example Value</td>
+      <td></td>
     </tr>
     <tr>
       <th>2</th>
-      <td>10010002</td>
-      <td>Carter County Outbuilding #2</td>
-      <td>2651 Gap Creek Road</td>
-      <td>HAMPTON</td>
-      <td>TN</td>
-      <td>37658</td>
-      <td>CARTER</td>
+      <td>Example Value</td>
+      <td>Example Value</td>
+      <td>Example Value</td>
+      <td>Example Value</td>
+      <td>Example Value</td>
+      <td>Example Value</td>
+      <td>EXAMPLE COUNTY</td>
       <td>1600</td>
-      <td>Long Term 15+ yrs</td>
-      <td>Warehouse Space</td>
-      <td>Current Mission Need</td>
-      <td>Utilized</td>
-      <td>Not Evaluated</td>
-      <td>Active</td>
-      <td>NaN</td>
+      <td>Example Value</td>
+      <td>Example Value</td>
+      <td>Example Value</td>
+      <td>Example Value</td>
+      <td>Example Value</td>
+      <td>Example Value</td>
+      <td></td>
     </tr>
     <tr>
       <th>3</th>
-      <td>10010003</td>
-      <td>Carter County Shop</td>
-      <td>2643 Gap Creek Road</td>
-      <td>HAMPTON</td>
-      <td>TN</td>
-      <td>37658</td>
-      <td>CARTER</td>
+      <td>Example Value</td>
+      <td>Example Value</td>
+      <td>Example Value</td>
+      <td>Example Value</td>
+      <td>Example Value</td>
+      <td>Example Value</td>
+      <td>EXAMPLE COUNTY</td>
       <td>1400</td>
-      <td>Long Term 15+ yrs</td>
-      <td>Public Safety</td>
-      <td>Current Mission Need</td>
-      <td>Utilized</td>
-      <td>Not Evaluated</td>
-      <td>Active</td>
-      <td>NaN</td>
+      <td>Example Value</td>
+      <td>Example Value</td>
+      <td>Example Value</td>
+      <td>Example Value</td>
+      <td>Example Value</td>
+      <td>Example Value</td>
+      <td></td>
     </tr>
     <tr>
       <th>4</th>
-      <td>01010001</td>
-      <td>Bluebird Storage Building</td>
-      <td>395 Firetower Lane</td>
-      <td>HEISKELL</td>
-      <td>TN</td>
-      <td>37754</td>
-      <td>ANDERSON</td>
+      <td>Example Value</td>
+      <td>Example Value</td>
+      <td>Example Value</td>
+      <td>Example Value</td>
+      <td>Example Value</td>
+      <td>Example Value</td>
+      <td>SAMPLE COUNTY</td>
       <td>48</td>
-      <td>Long Term 15+ yrs</td>
-      <td>Warehouse Space</td>
-      <td>Current Mission Need</td>
-      <td>Utilized</td>
-      <td>Not Evaluated</td>
-      <td>Active</td>
-      <td>NaN</td>
+      <td>Example Value</td>
+      <td>Example Value</td>
+      <td>Example Value</td>
+      <td>Example Value</td>
+      <td>Example Value</td>
+      <td>Example Value</td>
+      <td></td>
     </tr>
   </tbody>
 </table>
 </div>
 
+*(Illustrative sample rows shown above; not real facility records.)*
 
 ## 4. Standardize fields
 
@@ -809,16 +812,16 @@ logger.info('Dataframe dtypes:\n%s', df.dtypes)
   <tbody>
     <tr>
       <th>0</th>
-      <td>10000006</td>
-      <td>Holston Mtn Radio Building</td>
-      <td>National Forest 56</td>
-      <td>ELIZABETHTON</td>
+      <td>10000001</td>
+      <td>Example Building A</td>
+      <td>100 Example Street</td>
+      <td>EXAMPLE CITY</td>
       <td>TN</td>
-      <td>37643</td>
-      <td>CARTER</td>
-      <td>600.0</td>
+      <td>37001</td>
+      <td>EXAMPLE COUNTY</td>
+      <td>600</td>
       <td>Long Term 15+ yrs</td>
-      <td>Antenna/Tower</td>
+      <td>Office Space</td>
       <td>...</td>
       <td>False</td>
       <td>False</td>
@@ -826,23 +829,23 @@ logger.info('Dataframe dtypes:\n%s', df.dtypes)
       <td>False</td>
       <td>False</td>
       <td>False</td>
-      <td>National Forest 56, ELIZABETHTON, TN, 37643</td>
-      <td>NATIONAL FOREST 56|ELIZABETHTON|TN|37643</td>
-      <td>NATIONAL FOREST 56|ELIZABETHTON|TN</td>
+      <td>100 Example Street, EXAMPLE CITY, TN, 37001</td>
+      <td>100 EXAMPLE STREET|EXAMPLE CITY|TN|37001</td>
+      <td>100 EXAMPLE STREET|EXAMPLE CITY|TN</td>
       <td>2026-07-08T19:25:06+00:00</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>10010001</td>
-      <td>Carter County Residence</td>
-      <td>2651 Gap Creek Road</td>
-      <td>HAMPTON</td>
+      <td>10000002</td>
+      <td>Example Building B</td>
+      <td>110 Example Avenue</td>
+      <td>SAMPLE TOWN</td>
       <td>TN</td>
-      <td>37658</td>
-      <td>CARTER</td>
-      <td>1400.0</td>
+      <td>37002</td>
+      <td>EXAMPLE COUNTY</td>
+      <td>1400</td>
       <td>Long Term 15+ yrs</td>
-      <td>Residential</td>
+      <td>Storage</td>
       <td>...</td>
       <td>False</td>
       <td>False</td>
@@ -850,47 +853,47 @@ logger.info('Dataframe dtypes:\n%s', df.dtypes)
       <td>False</td>
       <td>False</td>
       <td>False</td>
-      <td>2651 Gap Creek Road, HAMPTON, TN, 37658</td>
-      <td>2651 GAP CREEK ROAD|HAMPTON|TN|37658</td>
-      <td>2651 GAP CREEK ROAD|HAMPTON|TN</td>
+      <td>110 Example Avenue, SAMPLE TOWN, TN, 37002</td>
+      <td>110 EXAMPLE AVENUE|SAMPLE TOWN|TN|37002</td>
+      <td>110 EXAMPLE AVENUE|SAMPLE TOWN|TN</td>
       <td>2026-07-08T19:25:06+00:00</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>10010002</td>
-      <td>Carter County Outbuilding #2</td>
-      <td>2651 Gap Creek Road</td>
-      <td>HAMPTON</td>
+      <td>10000003</td>
+      <td>Example Building C</td>
+      <td>120 Example Lane</td>
+      <td>SAMPLE TOWN</td>
       <td>TN</td>
-      <td>37658</td>
-      <td>CARTER</td>
-      <td>1600.0</td>
+      <td>37002</td>
+      <td>EXAMPLE COUNTY</td>
+      <td>1600</td>
       <td>Long Term 15+ yrs</td>
-      <td>Warehouse Space</td>
+      <td>Residential</td>
       <td>...</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>2651 Gap Creek Road, HAMPTON, TN, 37658</td>
-      <td>2651 GAP CREEK ROAD|HAMPTON|TN|37658</td>
-      <td>2651 GAP CREEK ROAD|HAMPTON|TN</td>
+      <td>True</td>
+      <td>True</td>
+      <td>True</td>
+      <td>True</td>
+      <td>True</td>
+      <td>True</td>
+      <td>120 Example Lane, SAMPLE TOWN, TN, 37002</td>
+      <td>120 EXAMPLE LANE|SAMPLE TOWN|TN|37002</td>
+      <td>120 EXAMPLE LANE|SAMPLE TOWN|TN</td>
       <td>2026-07-08T19:25:06+00:00</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>10010003</td>
-      <td>Carter County Shop</td>
-      <td>2643 Gap Creek Road</td>
-      <td>HAMPTON</td>
+      <td>10000004</td>
+      <td>Example Building D</td>
+      <td>130 Example Road</td>
+      <td>SAMPLE TOWN</td>
       <td>TN</td>
-      <td>37658</td>
-      <td>CARTER</td>
-      <td>1400.0</td>
+      <td>37002</td>
+      <td>EXAMPLE COUNTY</td>
+      <td>1400</td>
       <td>Long Term 15+ yrs</td>
-      <td>Public Safety</td>
+      <td>Shop</td>
       <td>...</td>
       <td>False</td>
       <td>False</td>
@@ -898,21 +901,21 @@ logger.info('Dataframe dtypes:\n%s', df.dtypes)
       <td>False</td>
       <td>False</td>
       <td>False</td>
-      <td>2643 Gap Creek Road, HAMPTON, TN, 37658</td>
-      <td>2643 GAP CREEK ROAD|HAMPTON|TN|37658</td>
-      <td>2643 GAP CREEK ROAD|HAMPTON|TN</td>
+      <td>130 Example Road, SAMPLE TOWN, TN, 37002</td>
+      <td>130 EXAMPLE ROAD|SAMPLE TOWN|TN|37002</td>
+      <td>130 EXAMPLE ROAD|SAMPLE TOWN|TN</td>
       <td>2026-07-08T19:25:06+00:00</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>01010001</td>
-      <td>Bluebird Storage Building</td>
-      <td>395 Firetower Lane</td>
-      <td>HEISKELL</td>
+      <td>10000005</td>
+      <td>Example Building E</td>
+      <td>140 Example Drive</td>
+      <td>SAMPLE TOWN</td>
       <td>TN</td>
-      <td>37754</td>
-      <td>ANDERSON</td>
-      <td>48.0</td>
+      <td>37003</td>
+      <td>SAMPLE COUNTY</td>
+      <td>48</td>
       <td>Long Term 15+ yrs</td>
       <td>Warehouse Space</td>
       <td>...</td>
@@ -922,14 +925,14 @@ logger.info('Dataframe dtypes:\n%s', df.dtypes)
       <td>False</td>
       <td>False</td>
       <td>False</td>
-      <td>395 Firetower Lane, HEISKELL, TN, 37754</td>
-      <td>395 FIRETOWER LANE|HEISKELL|TN|37754</td>
-      <td>395 FIRETOWER LANE|HEISKELL|TN</td>
+      <td>140 Example Drive, SAMPLE TOWN, TN, 37003</td>
+      <td>140 EXAMPLE DRIVE|SAMPLE TOWN|TN|37003</td>
+      <td>140 EXAMPLE DRIVE|SAMPLE TOWN|TN</td>
       <td>2026-07-08T19:25:06+00:00</td>
     </tr>
   </tbody>
 </table>
-<p>5 rows × 45 columns</p>
+<p>5 rows × 45 columns (illustrative sample)</p>
 </div>
 
 
@@ -1165,103 +1168,28 @@ display(address_review.head(75))
   <tbody>
     <tr>
       <th>0</th>
-      <td>Total records</td>
-      <td>463</td>
+      <td>Example Value</td>
+      <td>Example Value</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>Unique building codes</td>
-      <td>463</td>
+      <td>Example Value</td>
+      <td>Example Value</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>Records with any manual override</td>
-      <td>9</td>
+      <td>Example Value</td>
+      <td>Example Value</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>Records with address/city/state/ZIP/county ove...</td>
-      <td>9</td>
+      <td>Example Value</td>
+      <td>Example Value</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>Records with valid manual coordinates</td>
-      <td>9</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>Records accepting geocode candidate</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>Records excluded from publish by override</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>7</th>
-      <td>Blank or placeholder addresses</td>
-      <td>4</td>
-    </tr>
-    <tr>
-      <th>8</th>
-      <td>PO Box addresses</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>9</th>
-      <td>Legacy route or box addresses</td>
-      <td>24</td>
-    </tr>
-    <tr>
-      <th>10</th>
-      <td>Addresses lacking any digit</td>
-      <td>37</td>
-    </tr>
-    <tr>
-      <th>11</th>
-      <td>Addresses not starting with site number</td>
-      <td>65</td>
-    </tr>
-    <tr>
-      <th>12</th>
-      <td>Manual location review needed</td>
-      <td>65</td>
-    </tr>
-    <tr>
-      <th>13</th>
-      <td>Missing city</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>14</th>
-      <td>Missing state</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>15</th>
-      <td>Missing postal code</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>16</th>
-      <td>Address/city combinations with ZIP conflicts</td>
-      <td>3</td>
-    </tr>
-    <tr>
-      <th>17</th>
-      <td>Potential typo review records</td>
-      <td>6</td>
-    </tr>
-    <tr>
-      <th>18</th>
-      <td>Duplicate building codes</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>19</th>
-      <td>Records sharing an address with another building</td>
-      <td>400</td>
+      <td>Example Value</td>
+      <td>Example Value</td>
     </tr>
   </tbody>
 </table>
@@ -1311,190 +1239,22 @@ display(address_review.head(75))
   </thead>
   <tbody>
     <tr>
-      <th>12</th>
-      <td>04000007</td>
-      <td>Hendon Fire Tower</td>
-      <td>Fire Tower Road</td>
-      <td>GRAYSVILLE</td>
+      <th>0</th>
+      <td>10000001</td>
+      <td>Example Building A</td>
+      <td>100 Example Street</td>
+      <td>EXAMPLE CITY</td>
       <td>TN</td>
-      <td>37338</td>
-      <td>Fire Tower Road</td>
-      <td>GRAYSVILLE</td>
+      <td>37001</td>
+      <td>100 Example Street</td>
+      <td>EXAMPLE CITY</td>
       <td>TN</td>
-      <td>37338</td>
-      <td>...</td>
-      <td>False</td>
-      <td>False</td>
-      <td>True</td>
-      <td>False</td>
-      <td>True</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>13</th>
-      <td>04010001</td>
-      <td>Bledsoe SF Smoke House</td>
-      <td>Route 3 Box 180</td>
-      <td>PIKEVILLE</td>
-      <td>TN</td>
-      <td>37367</td>
-      <td>Route 3 Box 180</td>
-      <td>PIKEVILLE</td>
-      <td>TN</td>
-      <td>37367</td>
-      <td>...</td>
-      <td>False</td>
-      <td>True</td>
-      <td>False</td>
-      <td>False</td>
-      <td>True</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>14</th>
-      <td>04010002</td>
-      <td>Bledsoe SF Storm Shelter</td>
-      <td>Route 3 Box 180</td>
-      <td>PIKEVILLE</td>
-      <td>TN</td>
-      <td>37367</td>
-      <td>Route 3 Box 180</td>
-      <td>PIKEVILLE</td>
-      <td>TN</td>
-      <td>37367</td>
-      <td>...</td>
-      <td>False</td>
-      <td>True</td>
-      <td>False</td>
-      <td>False</td>
-      <td>True</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>15</th>
-      <td>04010005</td>
-      <td>Bledsoe SF Sawmill Shed</td>
-      <td>Route 3 Box 180</td>
-      <td>PIKEVILLE</td>
-      <td>TN</td>
-      <td>37367</td>
-      <td>Route 3 Box 180</td>
-      <td>PIKEVILLE</td>
-      <td>TN</td>
-      <td>37367</td>
-      <td>...</td>
-      <td>False</td>
-      <td>True</td>
-      <td>False</td>
-      <td>False</td>
-      <td>True</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>16</th>
-      <td>04010006</td>
-      <td>Bledsoe SF Implement Shed</td>
-      <td>Route 3 Box 180</td>
-      <td>PIKEVILLE</td>
-      <td>TN</td>
-      <td>37367</td>
-      <td>Route 3 Box 180</td>
-      <td>PIKEVILLE</td>
-      <td>TN</td>
-      <td>37367</td>
-      <td>...</td>
-      <td>False</td>
-      <td>True</td>
-      <td>False</td>
-      <td>False</td>
-      <td>True</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-    </tr>
-    <tr>
-      <th>173</th>
-      <td>36020004</td>
-      <td>Olive Hill Shop</td>
-      <td>1485 Firetower Rd</td>
-      <td>SAVANNAH</td>
-      <td>TN</td>
-      <td>38372</td>
-      <td>1485 Firetower Rd</td>
-      <td>SAVANNAH</td>
-      <td>TN</td>
-      <td>38372</td>
+      <td>37001</td>
       <td>...</td>
       <td>False</td>
       <td>False</td>
       <td>False</td>
-      <td>True</td>
       <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>True</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>266</th>
-      <td>55040001</td>
-      <td>Ramer Fire Tower Storage Shed</td>
-      <td>9001 Sulpher Springs Rd.</td>
-      <td>RAMER</td>
-      <td>TN</td>
-      <td>38367</td>
-      <td>9001 Sulpher Springs Rd.</td>
-      <td>RAMER</td>
-      <td>TN</td>
-      <td>38367</td>
-      <td>...</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>True</td>
       <td>False</td>
       <td>False</td>
       <td>False</td>
@@ -1503,22 +1263,22 @@ display(address_review.head(75))
       <td>False</td>
     </tr>
     <tr>
-      <th>267</th>
-      <td>55040002</td>
-      <td>Ramer Fire Tower</td>
-      <td>9001 Sulpher Springs Rd.</td>
-      <td>RAMER</td>
+      <th>1</th>
+      <td>10000002</td>
+      <td>Example Building B</td>
+      <td>110 Example Avenue</td>
+      <td>SAMPLE TOWN</td>
       <td>TN</td>
-      <td>38367</td>
-      <td>9001 Sulpher Springs Rd.</td>
-      <td>RAMER</td>
+      <td>37002</td>
+      <td>110 Example Avenue</td>
+      <td>SAMPLE TOWN</td>
       <td>TN</td>
-      <td>38367</td>
+      <td>37002</td>
       <td>...</td>
       <td>False</td>
       <td>False</td>
       <td>False</td>
-      <td>True</td>
+      <td>False</td>
       <td>False</td>
       <td>False</td>
       <td>False</td>
@@ -1527,22 +1287,46 @@ display(address_review.head(75))
       <td>False</td>
     </tr>
     <tr>
-      <th>268</th>
-      <td>55040003</td>
-      <td>Ramer Fire Tower Crew Shed</td>
-      <td>9001 Sulpher Springs Rd.</td>
-      <td>RAMER</td>
+      <th>2</th>
+      <td>10000003</td>
+      <td>Example Building C</td>
+      <td>120 Example Lane</td>
+      <td>SAMPLE TOWN</td>
       <td>TN</td>
-      <td>38367</td>
-      <td>9001 Sulpher Springs Rd.</td>
-      <td>RAMER</td>
+      <td>37002</td>
+      <td>120 Example Lane</td>
+      <td>SAMPLE TOWN</td>
       <td>TN</td>
-      <td>38367</td>
+      <td>37002</td>
+      <td>...</td>
+      <td>True</td>
+      <td>True</td>
+      <td>True</td>
+      <td>True</td>
+      <td>True</td>
+      <td>True</td>
+      <td>True</td>
+      <td>True</td>
+      <td>True</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>10000004</td>
+      <td>Example Building D</td>
+      <td>130 Example Road</td>
+      <td>SAMPLE TOWN</td>
+      <td>TN</td>
+      <td>37002</td>
+      <td>130 Example Road</td>
+      <td>SAMPLE TOWN</td>
+      <td>TN</td>
+      <td>37002</td>
       <td>...</td>
       <td>False</td>
       <td>False</td>
       <td>False</td>
-      <td>True</td>
+      <td>False</td>
       <td>False</td>
       <td>False</td>
       <td>False</td>
@@ -1551,22 +1335,22 @@ display(address_review.head(75))
       <td>False</td>
     </tr>
     <tr>
-      <th>318</th>
-      <td>63000030</td>
-      <td>Cunningham Office</td>
-      <td>4275 Louise Road</td>
-      <td>CUMBERLAND FUR.</td>
+      <th>4</th>
+      <td>10000005</td>
+      <td>Example Building E</td>
+      <td>140 Example Drive</td>
+      <td>SAMPLE TOWN</td>
       <td>TN</td>
-      <td>37051</td>
-      <td>4275 Louise Road</td>
-      <td>CUMBERLAND FUR.</td>
+      <td>37003</td>
+      <td>140 Example Drive</td>
+      <td>SAMPLE TOWN</td>
       <td>TN</td>
-      <td>37051</td>
+      <td>37003</td>
       <td>...</td>
       <td>False</td>
       <td>False</td>
       <td>False</td>
-      <td>True</td>
+      <td>False</td>
       <td>False</td>
       <td>False</td>
       <td>False</td>
@@ -1576,7 +1360,7 @@ display(address_review.head(75))
     </tr>
   </tbody>
 </table>
-<p>75 rows × 29 columns</p>
+<p>5 rows × 29 columns (illustrative sample)</p>
 </div>
 
 
@@ -1682,303 +1466,33 @@ logger.info('Saved QA review workbook: %s', QA_REVIEW_XLSX)
   <tbody>
     <tr>
       <th>0</th>
-      <td>15</td>
-      <td>Route 3 Box 180, PIKEVILLE, TN, 37367</td>
-      <td>04010001, 04010002, 04010005, 04010006, 040100...</td>
+      <td>2</td>
+      <td>100 Example Street, EXAMPLE CITY, TN, 37001</td>
+      <td>10000001, 10000002</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>12</td>
-      <td>420 Ozier Rd., PINSON, TN, 38366</td>
-      <td>57020001, 57020002, 57020003, 57020004, 570200...</td>
+      <td>3</td>
+      <td>110 Example Avenue, SAMPLE TOWN, TN, 37002</td>
+      <td>10000001, 10000002, 10000003</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>10</td>
-      <td>400 Firetower Ln., LIVINGSTON, TN, 38570</td>
-      <td>67010001, 67010002, 67010003, 67010004, 670100...</td>
+      <td>2</td>
+      <td>120 Example Lane, SAMPLE TOWN, TN, 37002</td>
+      <td>10000001, 10000002, 10000003, 10000004</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>9</td>
-      <td>16965 South Pittsburg Road, SEWANEE, TN, 37380</td>
-      <td>26010001, 26010002, 26020001, 26020002, 260200...</td>
+      <td>2</td>
+      <td>130 Example Road, SAMPLE TOWN, TN, 37002</td>
+      <td>10000001, 10000002</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>9</td>
-      <td>4266 Pickett Park Hwy, JAMESTOWN, TN, 38556</td>
-      <td>25040001, 25040002, 25040003, 25040004, 250400...</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>8</td>
-      <td>9063 Highway 411, DELANO, TN, 37325</td>
-      <td>70010001, 70010002, 70010003, 70010004, 700100...</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>7</td>
-      <td>1865 Fire Tower Rd., MEDON, TN, 38356</td>
-      <td>57010001, 57010002, 57010003, 57010004, 570100...</td>
-    </tr>
-    <tr>
-      <th>7</th>
-      <td>7</td>
-      <td>22117 Natchez Trace Rd, WILDERSVILLE, TN, 38388</td>
-      <td>39040001, 39040002, 39040003, 39040004, 390600...</td>
-    </tr>
-    <tr>
-      <th>8</th>
-      <td>7</td>
-      <td>3497 Church Street, BURNS, TN, 37029</td>
-      <td>22020001, 22020002, 22020003, 22020004, 220200...</td>
-    </tr>
-    <tr>
-      <th>9</th>
-      <td>6</td>
-      <td>1327 Montlake Road, SODDY DAISY, TN, 37379</td>
-      <td>33030001, 33030002, 33030003, 33030004, 330300...</td>
-    </tr>
-    <tr>
-      <th>10</th>
-      <td>6</td>
-      <td>1745 Leach Road, CEDAR GROVE, TN, 38321</td>
-      <td>09010001, 09010002, 09010003, 09010005, 090100...</td>
-    </tr>
-    <tr>
-      <th>11</th>
-      <td>6</td>
-      <td>195 Macedonia Road, HENRY, TN, 38231</td>
-      <td>40010001, 40010002, 40010003, 40010004, 400100...</td>
-    </tr>
-    <tr>
-      <th>12</th>
-      <td>6</td>
-      <td>310 Fire Tower Road, SEWANEE, TN, 37375</td>
-      <td>26030001, 26030002, 26030003, 26030004, 260300...</td>
-    </tr>
-    <tr>
-      <th>13</th>
-      <td>6</td>
-      <td>500 FireTower Road, DICKSON, TN, 37055</td>
-      <td>22010001, 22010002, 22010003, 22010004, 220100...</td>
-    </tr>
-    <tr>
-      <th>14</th>
-      <td>5</td>
-      <td>1454 Waynesboro Hwy, HOHENWALD, TN, 38462</td>
-      <td>51010001, 51010002, 51010003, 51010004, 51010005</td>
-    </tr>
-    <tr>
-      <th>15</th>
-      <td>5</td>
-      <td>147 Forest Tower Road, DOVER, TN, 37058</td>
-      <td>81000002, 81010001, 81010002, 81010003, 81010004</td>
-    </tr>
-    <tr>
-      <th>16</th>
-      <td>5</td>
-      <td>1657 Lower Fire Tower Road, SEQUATCHIE, TN, 37374</td>
-      <td>58020001, 58020002, 58020003, 58020004, 58020005</td>
-    </tr>
-    <tr>
-      <th>17</th>
-      <td>5</td>
-      <td>1855 Hiwassee Road, MADISONVILLE, TN, 37354</td>
-      <td>62010001, 62010002, 62010003, 62010004, 62010005</td>
-    </tr>
-    <tr>
-      <th>18</th>
-      <td>5</td>
-      <td>20111 Clarkrange Hwy., MONTEREY, TN, 38574</td>
-      <td>71010001, 71010002, 71010003, 71010004, 71010005</td>
-    </tr>
-    <tr>
-      <th>19</th>
-      <td>5</td>
-      <td>38 Snoddy Road, KELSO, TN, 37348</td>
-      <td>52010001, 52010002, 52010003, 52010004, 52010005</td>
-    </tr>
-    <tr>
-      <th>20</th>
-      <td>5</td>
-      <td>4377 Firetower Rd., COLUMBIA, TN, 38401</td>
-      <td>60010001, 60010002, 60010003, 60010004, 60010005</td>
-    </tr>
-    <tr>
-      <th>21</th>
-      <td>5</td>
-      <td>4766 Hollow Springs Road, BRADYVILLE, TN, 37026</td>
-      <td>08010001, 08010002, 08010003, 08020001, 08020002</td>
-    </tr>
-    <tr>
-      <th>22</th>
-      <td>5</td>
-      <td>6101 Millsfield Highway, DYERSBURG, TN, 38024</td>
-      <td>23010001, 23010002, 23010003, 23010004, 23010005</td>
-    </tr>
-    <tr>
-      <th>23</th>
-      <td>5</td>
-      <td>757 Ridgeview Road, BEAN STATION, TN, 37708</td>
-      <td>29010001, 29010002, 29010003, 29010004, 29010005</td>
-    </tr>
-    <tr>
-      <th>24</th>
-      <td>5</td>
-      <td>774 Mousetail Rd, PARSONS, TN, 38364</td>
-      <td>20010001, 20010002, 20010003, 20010004, 20010005</td>
-    </tr>
-    <tr>
-      <th>25</th>
-      <td>5</td>
-      <td>884 Highway 70 W, LENOIR CITY, TN, 37771</td>
-      <td>53010001, 53010002, 53010003, 53010004, 53010005</td>
-    </tr>
-    <tr>
-      <th>26</th>
-      <td>5</td>
-      <td>927 Firetower Road, MARTIN, TN, 38237</td>
-      <td>92010001, 92010002, 92010003, 92010004, 92010005</td>
-    </tr>
-    <tr>
-      <th>27</th>
-      <td>5</td>
-      <td>962 Old State Route 48, CENTERVILLE, TN, 37033</td>
-      <td>41020001, 41020002, 41020003, 41020004, 41020005</td>
-    </tr>
-    <tr>
-      <th>28</th>
-      <td>5</td>
-      <td>HCR 77 Box 66, ALTAMONT, TN, 37301</td>
-      <td>31020001, 31020002, 31020003, 31020004, 31020005</td>
-    </tr>
-    <tr>
-      <th>29</th>
-      <td>4</td>
-      <td>1084 Westel Road, ROCKWOOD, TN, 37854</td>
-      <td>73010001, 73010002, 73010003, 73010004</td>
-    </tr>
-    <tr>
-      <th>30</th>
-      <td>4</td>
-      <td>1100 Jones Road, HENDERSONVILLE, TN, 37075</td>
-      <td>83010001, 83010002, 83010003, 83010004</td>
-    </tr>
-    <tr>
-      <th>31</th>
-      <td>4</td>
-      <td>121 Pig Ranch Road, GORDONSVILLE, TN, 37030</td>
-      <td>80010001, 80010002, 80030001, 80030002</td>
-    </tr>
-    <tr>
-      <th>32</th>
-      <td>4</td>
-      <td>195 Fire Tower Lane, MORRISON, TN, 37357</td>
-      <td>89010001, 89010002, 89010003, 89010004</td>
-    </tr>
-    <tr>
-      <th>33</th>
-      <td>4</td>
-      <td>2030 Riley Creek Road, WHITLEYVILLE, TN, 38588</td>
-      <td>44010001, 44010002, 44030001, 44030002</td>
-    </tr>
-    <tr>
-      <th>34</th>
-      <td>4</td>
-      <td>220 Eastern Shores Dr., LEXINGTON, TN, 38351</td>
-      <td>39050001, 39050002, 39050003, 39050004</td>
-    </tr>
-    <tr>
-      <th>35</th>
-      <td>4</td>
-      <td>2880 Petway Road, ASHLAND CITY, TN, 37015</td>
-      <td>11050001, 11050002, 11050003, 11050004</td>
-    </tr>
-    <tr>
-      <th>36</th>
-      <td>4</td>
-      <td>3476 Sharps Chapel Road, SHARPS CHAPEL, TN, 37866</td>
-      <td>87020001, 87020002, 87020004, 87040001</td>
-    </tr>
-    <tr>
-      <th>37</th>
-      <td>4</td>
-      <td>395 Firetower Lane, HEISKELL, TN, 37754</td>
-      <td>01010001, 01010002, 01010003, 01010004</td>
-    </tr>
-    <tr>
-      <th>38</th>
-      <td>4</td>
-      <td>3998 Game Reserve Road, CHATTANOOGA, TN, 37405</td>
-      <td>58030001, 58030002, 58030004, 58030005</td>
-    </tr>
-    <tr>
-      <th>39</th>
-      <td>4</td>
-      <td>423 Fire Tower Drive, DUNLAP, TN, 37327</td>
-      <td>77020001, 77020002, 77020003, 77020004</td>
-    </tr>
-    <tr>
-      <th>40</th>
-      <td>4</td>
-      <td>444 Fox Hunter Road, MAYNARDVILLE, TN, 37807</td>
-      <td>87010001, 87010002, 87010003, 87010004</td>
-    </tr>
-    <tr>
-      <th>41</th>
-      <td>4</td>
-      <td>460 Firetower Road, NEW MARKET, TN, 37820</td>
-      <td>45040001, 45040002, 45040003, 45040004</td>
-    </tr>
-    <tr>
-      <th>42</th>
-      <td>4</td>
-      <td>490 Fire Tower Rd, LINDEN, TN, 37096</td>
-      <td>68020001, 68020002, 68020004, 68020005</td>
-    </tr>
-    <tr>
-      <th>43</th>
-      <td>4</td>
-      <td>5098 U.S. 127, SIGNAL MOUNTAIN, TN, 37377</td>
-      <td>77040001, 77040002, 77040003, 77040004</td>
-    </tr>
-    <tr>
-      <th>44</th>
-      <td>4</td>
-      <td>7691 Pewitt Road, FRANKLIN, TN, 37064</td>
-      <td>94010001, 94010002, 94010003, 94010004</td>
-    </tr>
-    <tr>
-      <th>45</th>
-      <td>4</td>
-      <td>Cabo Rd., ENVILLE, TN, 38332</td>
-      <td>12010001, 12010002, 12010003, 12010004</td>
-    </tr>
-    <tr>
-      <th>46</th>
-      <td>3</td>
-      <td>100 Clinch Ridge Rd, THORN HILL, TN, 37881</td>
-      <td>37020001, 37020002, 37020003</td>
-    </tr>
-    <tr>
-      <th>47</th>
-      <td>3</td>
-      <td>115 Fire Tower Rd, SELMER, TN, 38375</td>
-      <td>55010001, 55010002, 55010003</td>
-    </tr>
-    <tr>
-      <th>48</th>
-      <td>3</td>
-      <td>1336 County Road 875, ETOWAH, TN, 37331</td>
-      <td>54010001, 54010002, 54010003</td>
-    </tr>
-    <tr>
-      <th>49</th>
-      <td>3</td>
-      <td>1342 Hurricane Bridge Rd., SMITHVILLE, TN, 37166</td>
-      <td>21010001, 21010002, 21010003</td>
+      <td>2</td>
+      <td>140 Example Drive, SAMPLE TOWN, TN, 37003</td>
+      <td>10000001, 10000002, 10000003</td>
     </tr>
   </tbody>
 </table>
@@ -2014,30 +1528,48 @@ logger.info('Saved QA review workbook: %s', QA_REVIEW_XLSX)
   <tbody>
     <tr>
       <th>0</th>
-      <td>2643 Gap Creek Road</td>
-      <td>HAMPTON</td>
+      <td>100 Example Street</td>
+      <td>EXAMPLE CITY</td>
       <td>TN</td>
-      <td>37643, 37658</td>
+      <td>37001, 37002</td>
       <td>2</td>
-      <td>10010003, 10010004</td>
+      <td>10000001, 10000002</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>400 Firetower Ln.</td>
-      <td>LIVINGSTON</td>
+      <td>110 Example Avenue</td>
+      <td>SAMPLE TOWN</td>
       <td>TN</td>
-      <td>38570, 38571</td>
-      <td>11</td>
-      <td>67010001, 67010002, 67010003, 67010004, 670100...</td>
+      <td>37002, 37002</td>
+      <td>3</td>
+      <td>10000001, 10000002, 10000003</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>1485 Firetower Rd</td>
-      <td>SAVANNAH</td>
+      <td>120 Example Lane</td>
+      <td>SAMPLE TOWN</td>
       <td>TN</td>
-      <td>38367, 38372</td>
-      <td>4</td>
-      <td>36020001, 36020002, 36020003, 36020004</td>
+      <td>37002, 37002</td>
+      <td>2</td>
+      <td>10000001, 10000002, 10000003, 10000004</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>130 Example Road</td>
+      <td>SAMPLE TOWN</td>
+      <td>TN</td>
+      <td>37002, 37003</td>
+      <td>2</td>
+      <td>10000001, 10000002</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>140 Example Drive</td>
+      <td>SAMPLE TOWN</td>
+      <td>TN</td>
+      <td>37003, 37001</td>
+      <td>2</td>
+      <td>10000001, 10000002, 10000003</td>
     </tr>
   </tbody>
 </table>
@@ -2075,69 +1607,58 @@ logger.info('Saved QA review workbook: %s', QA_REVIEW_XLSX)
   <tbody>
     <tr>
       <th>0</th>
-      <td>63000030</td>
-      <td>Cunningham Office</td>
-      <td>4275 Louise Road</td>
-      <td>CUMBERLAND FUR.</td>
+      <td>10000001</td>
+      <td>Example Building A</td>
+      <td>100 Example Street</td>
+      <td>EXAMPLE CITY</td>
       <td>TN</td>
-      <td>37051</td>
-      <td>verify_city_abbreviation_cumberland_fur</td>
-      <td>4275 Louise Road, CUMBERLAND FUR., TN, 37051</td>
+      <td>37001</td>
+      <td></td>
+      <td>100 Example Street, EXAMPLE CITY, TN, 37001</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>63000031</td>
-      <td>Cunningham Lookout Tower</td>
-      <td>4275 Louise Road</td>
-      <td>CUMBERLAND FUR.</td>
+      <td>10000002</td>
+      <td>Example Building B</td>
+      <td>110 Example Avenue</td>
+      <td>SAMPLE TOWN</td>
       <td>TN</td>
-      <td>37051</td>
-      <td>verify_city_abbreviation_cumberland_fur</td>
-      <td>4275 Louise Road, CUMBERLAND FUR., TN, 37051</td>
+      <td>37002</td>
+      <td></td>
+      <td>110 Example Avenue, SAMPLE TOWN, TN, 37002</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>95000007</td>
-      <td>Cedars Storage Shed</td>
-      <td>5112 Murfressboro Rd.</td>
-      <td>LEBANON</td>
+      <td>10000003</td>
+      <td>Example Building C</td>
+      <td>120 Example Lane</td>
+      <td>SAMPLE TOWN</td>
       <td>TN</td>
-      <td>37090</td>
-      <td>verify_street_spelling_murfressboro</td>
-      <td>5112 Murfressboro Rd., LEBANON, TN, 37090</td>
+      <td>37002</td>
+      <td></td>
+      <td>120 Example Lane, SAMPLE TOWN, TN, 37002</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>55040001</td>
-      <td>Ramer Fire Tower Storage Shed</td>
-      <td>9001 Sulpher Springs Rd.</td>
-      <td>RAMER</td>
+      <td>10000004</td>
+      <td>Example Building D</td>
+      <td>130 Example Road</td>
+      <td>SAMPLE TOWN</td>
       <td>TN</td>
-      <td>38367</td>
-      <td>verify_street_spelling_sulpher</td>
-      <td>9001 Sulpher Springs Rd., RAMER, TN, 38367</td>
+      <td>37002</td>
+      <td></td>
+      <td>130 Example Road, SAMPLE TOWN, TN, 37002</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>55040002</td>
-      <td>Ramer Fire Tower</td>
-      <td>9001 Sulpher Springs Rd.</td>
-      <td>RAMER</td>
+      <td>10000005</td>
+      <td>Example Building E</td>
+      <td>140 Example Drive</td>
+      <td>SAMPLE TOWN</td>
       <td>TN</td>
-      <td>38367</td>
-      <td>verify_street_spelling_sulpher</td>
-      <td>9001 Sulpher Springs Rd., RAMER, TN, 38367</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>55040003</td>
-      <td>Ramer Fire Tower Crew Shed</td>
-      <td>9001 Sulpher Springs Rd.</td>
-      <td>RAMER</td>
-      <td>TN</td>
-      <td>38367</td>
-      <td>verify_street_spelling_sulpher</td>
-      <td>9001 Sulpher Springs Rd., RAMER, TN, 38367</td>
+      <td>37003</td>
+      <td></td>
+      <td>140 Example Drive, SAMPLE TOWN, TN, 37003</td>
     </tr>
   </tbody>
 </table>
@@ -2175,553 +1696,58 @@ logger.info('Saved QA review workbook: %s', QA_REVIEW_XLSX)
   <tbody>
     <tr>
       <th>0</th>
-      <td>03010004</td>
-      <td>Camden Storage Building</td>
-      <td>625 Fire Tower Rd</td>
-      <td>CAMDEN</td>
+      <td>10000001</td>
+      <td>Example Building A</td>
+      <td>100 Example Street</td>
+      <td>EXAMPLE CITY</td>
       <td>TN</td>
-      <td>38320</td>
-      <td>0</td>
-      <td>0.0</td>
+      <td>37001</td>
+      <td>600</td>
+      <td>600</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>04010016</td>
-      <td>Bledsoe SF Sawmill Residence</td>
-      <td>Route 3 Box 180</td>
-      <td>PIKEVILLE</td>
+      <td>10000002</td>
+      <td>Example Building B</td>
+      <td>110 Example Avenue</td>
+      <td>SAMPLE TOWN</td>
       <td>TN</td>
-      <td>37367</td>
-      <td>0</td>
-      <td>0.0</td>
+      <td>37002</td>
+      <td>1400</td>
+      <td>1400</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>09010003</td>
-      <td>Leach Storage Building #3</td>
-      <td>1745 Leach Road</td>
-      <td>CEDAR GROVE</td>
+      <td>10000003</td>
+      <td>Example Building C</td>
+      <td>120 Example Lane</td>
+      <td>SAMPLE TOWN</td>
       <td>TN</td>
-      <td>38321</td>
-      <td>0</td>
-      <td>0.0</td>
+      <td>37002</td>
+      <td>1600</td>
+      <td>1600</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>10010004</td>
-      <td>Carter County Outbuilding #1</td>
-      <td>2643 Gap Creek Road</td>
-      <td>HAMPTON</td>
+      <td>10000004</td>
+      <td>Example Building D</td>
+      <td>130 Example Road</td>
+      <td>SAMPLE TOWN</td>
       <td>TN</td>
-      <td>37643</td>
-      <td>0</td>
-      <td>0.0</td>
+      <td>37002</td>
+      <td>1400</td>
+      <td>1400</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>11010001</td>
-      <td>Sycamore Crew Cabin</td>
-      <td>1106 Bryant Road</td>
-      <td>ASHLAND CITY</td>
+      <td>10000005</td>
+      <td>Example Building E</td>
+      <td>140 Example Drive</td>
+      <td>SAMPLE TOWN</td>
       <td>TN</td>
-      <td>37015</td>
-      <td>0</td>
-      <td>0.0</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>11010002</td>
-      <td>Sycamore Fire Tower</td>
-      <td>1106 Bryant Road</td>
-      <td>ASHLAND CITY</td>
-      <td>TN</td>
-      <td>37015</td>
-      <td>0</td>
-      <td>0.0</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>11050001</td>
-      <td>Petway Cabin</td>
-      <td>2880 Petway Road</td>
-      <td>ASHLAND CITY</td>
-      <td>TN</td>
-      <td>37015</td>
-      <td>0</td>
-      <td>0.0</td>
-    </tr>
-    <tr>
-      <th>7</th>
-      <td>11050003</td>
-      <td>Petway House</td>
-      <td>2880 Petway Road</td>
-      <td>ASHLAND CITY</td>
-      <td>TN</td>
-      <td>37015</td>
-      <td>0</td>
-      <td>0.0</td>
-    </tr>
-    <tr>
-      <th>8</th>
-      <td>12010002</td>
-      <td>Jacks Creek Fire Tower Quonset Hut</td>
-      <td>Cabo Rd.</td>
-      <td>ENVILLE</td>
-      <td>TN</td>
-      <td>38332</td>
-      <td>0</td>
-      <td>0.0</td>
-    </tr>
-    <tr>
-      <th>9</th>
-      <td>12010004</td>
-      <td>Jacks Creek Fire Tower Crew Shed</td>
-      <td>Cabo Rd.</td>
-      <td>ENVILLE</td>
-      <td>TN</td>
-      <td>38332</td>
-      <td>0</td>
-      <td>0.0</td>
-    </tr>
-    <tr>
-      <th>10</th>
-      <td>15010002</td>
-      <td>English Mtn Radio Tower Building</td>
-      <td>1400 Carson Springs Road</td>
-      <td>NEWPORT</td>
-      <td>TN</td>
-      <td>37821</td>
-      <td>0</td>
-      <td>0.0</td>
-    </tr>
-    <tr>
-      <th>11</th>
-      <td>19000098</td>
-      <td>Forestry Radio Warehouse</td>
-      <td>1134 Menzler Road</td>
-      <td>NASHVILLE</td>
-      <td>TN</td>
-      <td>37210</td>
-      <td>0</td>
-      <td>0.0</td>
-    </tr>
-    <tr>
-      <th>12</th>
-      <td>19010027</td>
-      <td>Nashville Main Forestry Office, Bruer Building</td>
-      <td>406 Hogan Road</td>
-      <td>NASHVILLE</td>
-      <td>TN</td>
-      <td>37220</td>
-      <td></td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>13</th>
-      <td>19010028</td>
-      <td>Porter Building</td>
-      <td>436 Hogan Road</td>
-      <td>NASHVILLE</td>
-      <td>TN</td>
-      <td>37220</td>
-      <td></td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>14</th>
-      <td>20010003</td>
-      <td>Parsons Firetower Shed #1</td>
-      <td>774 Mousetail Rd</td>
-      <td>PARSONS</td>
-      <td>TN</td>
-      <td>38364</td>
-      <td>0</td>
-      <td>0.0</td>
-    </tr>
-    <tr>
-      <th>15</th>
-      <td>23010002</td>
-      <td>Millsfield Office</td>
-      <td>6101 Millsfield Highway</td>
-      <td>DYERSBURG</td>
-      <td>TN</td>
-      <td>38024</td>
-      <td>0</td>
-      <td>0.0</td>
-    </tr>
-    <tr>
-      <th>16</th>
-      <td>23010004</td>
-      <td>Millsfield Radio Building</td>
-      <td>6101 Millsfield Highway</td>
-      <td>DYERSBURG</td>
-      <td>TN</td>
-      <td>38024</td>
-      <td>0</td>
-      <td>0.0</td>
-    </tr>
-    <tr>
-      <th>17</th>
-      <td>23010005</td>
-      <td>Millsfield Radio Tower</td>
-      <td>6101 Millsfield Highway</td>
-      <td>DYERSBURG</td>
-      <td>TN</td>
-      <td>38024</td>
-      <td>0</td>
-      <td>0.0</td>
-    </tr>
-    <tr>
-      <th>18</th>
-      <td>24010002</td>
-      <td>Williston Fire Tower Residence</td>
-      <td>3570 Ebenezer Loop</td>
-      <td>SOMERVILLE</td>
-      <td>TN</td>
-      <td>38068</td>
-      <td>0</td>
-      <td>0.0</td>
-    </tr>
-    <tr>
-      <th>19</th>
-      <td>24010003</td>
-      <td>Williston Fire Tower Radio Repeater Building</td>
-      <td>3570 Ebenezer Loop</td>
-      <td>SOMERVILLE</td>
-      <td>TN</td>
-      <td>38068</td>
-      <td>0</td>
-      <td>0.0</td>
-    </tr>
-    <tr>
-      <th>20</th>
-      <td>25080001</td>
-      <td>Wolf River Forestry Building</td>
-      <td>Unidentified</td>
-      <td>JAMESTOWN</td>
-      <td>TN</td>
-      <td>38556</td>
-      <td>0</td>
-      <td>0.0</td>
-    </tr>
-    <tr>
-      <th>21</th>
-      <td>25080002</td>
-      <td>Wolf River Tower</td>
-      <td>Unidentified</td>
-      <td>JAMESTOWN</td>
-      <td>TN</td>
-      <td>38556</td>
-      <td>0</td>
-      <td>0.0</td>
-    </tr>
-    <tr>
-      <th>22</th>
-      <td>28000011</td>
-      <td>Brooklyn Plaza Area Office</td>
-      <td>57 Firetower Road</td>
-      <td>PULASKI</td>
-      <td>TN</td>
-      <td>38478</td>
-      <td>0</td>
-      <td>0.0</td>
-    </tr>
-    <tr>
-      <th>23</th>
-      <td>33030001</td>
-      <td>Montlake Shop/Office</td>
-      <td>1327 Montlake Road</td>
-      <td>SODDY DAISY</td>
-      <td>TN</td>
-      <td>37379</td>
-      <td>0</td>
-      <td>0.0</td>
-    </tr>
-    <tr>
-      <th>24</th>
-      <td>33080001</td>
-      <td>District 3 Dispatch Office</td>
-      <td>5530 Hwy 153</td>
-      <td>HIXSON</td>
-      <td>TN</td>
-      <td>37343</td>
-      <td>0</td>
-      <td>0.0</td>
-    </tr>
-    <tr>
-      <th>25</th>
-      <td>33080002</td>
-      <td>District 3 Office</td>
-      <td>5530 Hwy 153</td>
-      <td>HIXSON</td>
-      <td>TN</td>
-      <td>37343</td>
-      <td>0</td>
-      <td>0.0</td>
-    </tr>
-    <tr>
-      <th>26</th>
-      <td>35000003</td>
-      <td>Whiteville Radio Tower</td>
-      <td>134 West Main Street</td>
-      <td>WHITEVILLE</td>
-      <td>TN</td>
-      <td>38075</td>
-      <td>0</td>
-      <td>0.0</td>
-    </tr>
-    <tr>
-      <th>27</th>
-      <td>35040001</td>
-      <td>Hickory Valley Crew Shed</td>
-      <td>185 Buster Woods Road</td>
-      <td>HICKORY VALLEY</td>
-      <td>TN</td>
-      <td>38042</td>
-      <td>0</td>
-      <td>0.0</td>
-    </tr>
-    <tr>
-      <th>28</th>
-      <td>35050003</td>
-      <td>Hornsby Office</td>
-      <td>435 Fire Tower Lane</td>
-      <td>BOLIVAR</td>
-      <td>TN</td>
-      <td>38008</td>
-      <td>0</td>
-      <td>0.0</td>
-    </tr>
-    <tr>
-      <th>29</th>
-      <td>36030001</td>
-      <td>Savannah Radio Tower &amp; Building</td>
-      <td>1680 Irvin Rd</td>
-      <td>SAVANNAH</td>
-      <td>TN</td>
-      <td>38372</td>
-      <td>0</td>
-      <td>0.0</td>
-    </tr>
-    <tr>
-      <th>30</th>
-      <td>36030002</td>
-      <td>Savannah Office</td>
-      <td>1680 Irvin Rd</td>
-      <td>SAVANNAH</td>
-      <td>TN</td>
-      <td>38372</td>
-      <td>0</td>
-      <td>0.0</td>
-    </tr>
-    <tr>
-      <th>31</th>
-      <td>36040001</td>
-      <td>Pickwick Firetower</td>
-      <td>339 Turkey Knob Ln.</td>
-      <td>COUNCE</td>
-      <td>TN</td>
-      <td>38326</td>
-      <td>0</td>
-      <td>0.0</td>
-    </tr>
-    <tr>
-      <th>32</th>
-      <td>36040002</td>
-      <td>Pickwick Office</td>
-      <td>339 Turkey Knob Ln.</td>
-      <td>COUNCE</td>
-      <td>TN</td>
-      <td>38326</td>
-      <td>0</td>
-      <td>0.0</td>
-    </tr>
-    <tr>
-      <th>33</th>
-      <td>36040003</td>
-      <td>Pickwick Shop</td>
-      <td>339 Turkey Knob Ln.</td>
-      <td>COUNCE</td>
-      <td>TN</td>
-      <td>38326</td>
-      <td>0</td>
-      <td>0.0</td>
-    </tr>
-    <tr>
-      <th>34</th>
-      <td>37020001</td>
-      <td>Mooresburg Building</td>
-      <td>100 Clinch Ridge Rd</td>
-      <td>THORN HILL</td>
-      <td>TN</td>
-      <td>37881</td>
-      <td>0</td>
-      <td>0.0</td>
-    </tr>
-    <tr>
-      <th>35</th>
-      <td>39040001</td>
-      <td>Natchez Trace State Forest Office</td>
-      <td>22117 Natchez Trace Rd</td>
-      <td>WILDERSVILLE</td>
-      <td>TN</td>
-      <td>38388</td>
-      <td>0</td>
-      <td>0.0</td>
-    </tr>
-    <tr>
-      <th>36</th>
-      <td>39040002</td>
-      <td>Natchez Trace State Forest Equipment Shed</td>
-      <td>22117 Natchez Trace Rd</td>
-      <td>WILDERSVILLE</td>
-      <td>TN</td>
-      <td>38388</td>
-      <td>0</td>
-      <td>0.0</td>
-    </tr>
-    <tr>
-      <th>37</th>
-      <td>39040003</td>
-      <td>Natchez Trace State Forest Tractor Shed</td>
-      <td>22117 Natchez Trace Rd</td>
-      <td>WILDERSVILLE</td>
-      <td>TN</td>
-      <td>38388</td>
-      <td>0</td>
-      <td>0.0</td>
-    </tr>
-    <tr>
-      <th>38</th>
-      <td>39060002</td>
-      <td>Natchez Trace Storage Shed #2</td>
-      <td>22117 Natchez Trace Rd</td>
-      <td>WILDERSVILLE</td>
-      <td>TN</td>
-      <td>38388</td>
-      <td>0</td>
-      <td>0.0</td>
-    </tr>
-    <tr>
-      <th>39</th>
-      <td>40010002</td>
-      <td>Paris Storage Building</td>
-      <td>195 Macedonia Road</td>
-      <td>HENRY</td>
-      <td>TN</td>
-      <td>38231</td>
-      <td>0</td>
-      <td>0.0</td>
-    </tr>
-    <tr>
-      <th>40</th>
-      <td>40010004</td>
-      <td>Paris Office</td>
-      <td>195 Macedonia Road</td>
-      <td>HENRY</td>
-      <td>TN</td>
-      <td>38231</td>
-      <td>0</td>
-      <td>0.0</td>
-    </tr>
-    <tr>
-      <th>41</th>
-      <td>44030002</td>
-      <td>Haydenburg Tower House</td>
-      <td>2030 Riley Creek Road</td>
-      <td>WHITLEYVILLE</td>
-      <td>TN</td>
-      <td>38588</td>
-      <td>0</td>
-      <td>0.0</td>
-    </tr>
-    <tr>
-      <th>42</th>
-      <td>45040001</td>
-      <td>Jefferson County Storage Building</td>
-      <td>460 Firetower Road</td>
-      <td>NEW MARKET</td>
-      <td>TN</td>
-      <td>37820</td>
-      <td>0</td>
-      <td>0.0</td>
-    </tr>
-    <tr>
-      <th>43</th>
-      <td>45040002</td>
-      <td>Jefferson County 911 Radio System</td>
-      <td>460 Firetower Road</td>
-      <td>NEW MARKET</td>
-      <td>TN</td>
-      <td>37820</td>
-      <td>0</td>
-      <td>0.0</td>
-    </tr>
-    <tr>
-      <th>44</th>
-      <td>45040003</td>
-      <td>Jefferson County Ag Crime Unit Office</td>
-      <td>460 Firetower Road</td>
-      <td>NEW MARKET</td>
-      <td>TN</td>
-      <td>37820</td>
-      <td>0</td>
-      <td>0.0</td>
-    </tr>
-    <tr>
-      <th>45</th>
-      <td>45040004</td>
-      <td>Jefferson County Fire Tower</td>
-      <td>460 Firetower Road</td>
-      <td>NEW MARKET</td>
-      <td>TN</td>
-      <td>37820</td>
-      <td>0</td>
-      <td>0.0</td>
-    </tr>
-    <tr>
-      <th>46</th>
-      <td>47000013</td>
-      <td>DOA Regulatory Services, Solar House</td>
-      <td>3211 Alcoa Hwy, Solar House #3</td>
-      <td>KNOXVILLE</td>
-      <td>TN</td>
-      <td>37920</td>
-      <td>0</td>
-      <td>0.0</td>
-    </tr>
-    <tr>
-      <th>47</th>
-      <td>49010001</td>
-      <td>Ripley Fire Tower Shop</td>
-      <td>247 Joe Critchfield Rd.</td>
-      <td>KNOXVILLE</td>
-      <td>TN</td>
-      <td>38063</td>
-      <td>0</td>
-      <td>0.0</td>
-    </tr>
-    <tr>
-      <th>48</th>
-      <td>50070001</td>
-      <td>Westpoint Office</td>
-      <td>Westpoint Road</td>
-      <td>LAWRENCEBURG</td>
-      <td>TN</td>
-      <td>38486</td>
-      <td>0</td>
-      <td>0.0</td>
-    </tr>
-    <tr>
-      <th>49</th>
-      <td>50070002</td>
-      <td>Westpoint Fire Tower</td>
-      <td>Westpoint Road</td>
-      <td>LAWRENCEBURG</td>
-      <td>TN</td>
-      <td>38486</td>
-      <td>0</td>
-      <td>0.0</td>
+      <td>37003</td>
+      <td>48</td>
+      <td>48</td>
     </tr>
   </tbody>
 </table>
@@ -2817,271 +1843,127 @@ display(manual_override_work_queue.head(100))
   <tbody>
     <tr>
       <th>0</th>
-      <td>10000006</td>
-      <td>Holston Mtn Radio Building</td>
-      <td>National Forest 56</td>
-      <td>ELIZABETHTON</td>
+      <td>10000001</td>
+      <td>Example Building A</td>
+      <td>100 Example Street</td>
+      <td>EXAMPLE CITY</td>
       <td>TN</td>
-      <td>37643</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
+      <td>37001</td>
+      <td>100 Example Street</td>
+      <td>EXAMPLE CITY</td>
+      <td>TN</td>
+      <td>37001</td>
       <td>...</td>
+      <td>False</td>
+      <td>False</td>
       <td></td>
       <td></td>
-      <td></td>
-      <td></td>
-      <td>National Forest 56, ELIZABETHTON, TN, 37643</td>
-      <td>address_does_not_start_with_site_number</td>
+      <td>100 Example Street, EXAMPLE CITY, TN, 37001</td>
+      <td>False</td>
       <td></td>
       <td>False</td>
       <td>False</td>
       <td>False</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>10000002</td>
+      <td>Example Building B</td>
+      <td>110 Example Avenue</td>
+      <td>SAMPLE TOWN</td>
+      <td>TN</td>
+      <td>37002</td>
+      <td>110 Example Avenue</td>
+      <td>SAMPLE TOWN</td>
+      <td>TN</td>
+      <td>37002</td>
+      <td>...</td>
+      <td>False</td>
+      <td>False</td>
+      <td></td>
+      <td></td>
+      <td>110 Example Avenue, SAMPLE TOWN, TN, 37002</td>
+      <td>False</td>
+      <td></td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>10000003</td>
+      <td>Example Building C</td>
+      <td>120 Example Lane</td>
+      <td>SAMPLE TOWN</td>
+      <td>TN</td>
+      <td>37002</td>
+      <td>120 Example Lane</td>
+      <td>SAMPLE TOWN</td>
+      <td>TN</td>
+      <td>37002</td>
+      <td>...</td>
+      <td>True</td>
+      <td>True</td>
+      <td></td>
+      <td></td>
+      <td>120 Example Lane, SAMPLE TOWN, TN, 37002</td>
+      <td>True</td>
+      <td></td>
+      <td>True</td>
+      <td>True</td>
+      <td>True</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>10010003</td>
-      <td>Carter County Shop</td>
-      <td>2643 Gap Creek Road</td>
-      <td>HAMPTON</td>
+      <td>10000004</td>
+      <td>Example Building D</td>
+      <td>130 Example Road</td>
+      <td>SAMPLE TOWN</td>
       <td>TN</td>
-      <td>37658</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
+      <td>37002</td>
+      <td>130 Example Road</td>
+      <td>SAMPLE TOWN</td>
+      <td>TN</td>
+      <td>37002</td>
       <td>...</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td>2643 Gap Creek Road, HAMPTON, TN, 37658</td>
-      <td></td>
-      <td></td>
-      <td>True</td>
       <td>False</td>
       <td>False</td>
-    </tr>
-    <tr>
-      <th>12</th>
-      <td>04000007</td>
-      <td>Hendon Fire Tower</td>
-      <td>Fire Tower Road</td>
-      <td>GRAYSVILLE</td>
-      <td>TN</td>
-      <td>37338</td>
       <td></td>
       <td></td>
-      <td></td>
-      <td></td>
-      <td>...</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td>Fire Tower Road, GRAYSVILLE, TN, 37338</td>
-      <td>address_does_not_start_with_site_number</td>
+      <td>130 Example Road, SAMPLE TOWN, TN, 37002</td>
+      <td>False</td>
       <td></td>
       <td>False</td>
       <td>False</td>
       <td>False</td>
     </tr>
     <tr>
-      <th>13</th>
-      <td>04010001</td>
-      <td>Bledsoe SF Smoke House</td>
-      <td>Route 3 Box 180</td>
-      <td>PIKEVILLE</td>
+      <th>4</th>
+      <td>10000005</td>
+      <td>Example Building E</td>
+      <td>140 Example Drive</td>
+      <td>SAMPLE TOWN</td>
       <td>TN</td>
-      <td>37367</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td>...</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td>Route 3 Box 180, PIKEVILLE, TN, 37367</td>
-      <td>legacy_route_or_box_address; address_does_not_...</td>
-      <td></td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>14</th>
-      <td>04010002</td>
-      <td>Bledsoe SF Storm Shelter</td>
-      <td>Route 3 Box 180</td>
-      <td>PIKEVILLE</td>
+      <td>37003</td>
+      <td>140 Example Drive</td>
+      <td>SAMPLE TOWN</td>
       <td>TN</td>
-      <td>37367</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
+      <td>37003</td>
       <td>...</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td>Route 3 Box 180, PIKEVILLE, TN, 37367</td>
-      <td>legacy_route_or_box_address; address_does_not_...</td>
-      <td></td>
       <td>False</td>
       <td>False</td>
+      <td></td>
+      <td></td>
+      <td>140 Example Drive, SAMPLE TOWN, TN, 37003</td>
       <td>False</td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-    </tr>
-    <tr>
-      <th>407</th>
-      <td>81000003</td>
-      <td>Lookout Tower (Model) LBL</td>
-      <td>Ginger Bay Road</td>
-      <td>DOVER</td>
-      <td>TN</td>
-      <td>37058</td>
       <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td>...</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td>Ginger Bay Road, DOVER, TN, 37058</td>
-      <td>address_does_not_start_with_site_number</td>
-      <td></td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>412</th>
-      <td>81020001</td>
-      <td>Model Storage Building (LBL)</td>
-      <td>Fire Tower Road</td>
-      <td>DOVER</td>
-      <td>TN</td>
-      <td>37058</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td>...</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td>Fire Tower Road, DOVER, TN, 37058</td>
-      <td>address_does_not_start_with_site_number</td>
-      <td></td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>413</th>
-      <td>81020002</td>
-      <td>Model Shop And Office</td>
-      <td>Fire Tower Road</td>
-      <td>DOVER</td>
-      <td>TN</td>
-      <td>37058</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td>...</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td>Fire Tower Road, DOVER, TN, 37058</td>
-      <td>address_does_not_start_with_site_number</td>
-      <td></td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>461</th>
-      <td>95000006</td>
-      <td>Lebanon Tower</td>
-      <td>Dead End of Firetower Rd.</td>
-      <td>LEBANON</td>
-      <td>TN</td>
-      <td>37090</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td>...</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td>Dead End of Firetower Rd., LEBANON, TN, 37090</td>
-      <td>address_does_not_start_with_site_number</td>
-      <td></td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>462</th>
-      <td>95000007</td>
-      <td>Cedars Storage Shed</td>
-      <td>5112 Murfressboro Rd.</td>
-      <td>LEBANON</td>
-      <td>TN</td>
-      <td>37090</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td>...</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td>5112 Murfressboro Rd., LEBANON, TN, 37090</td>
-      <td></td>
-      <td>verify_street_spelling_murfressboro</td>
       <td>False</td>
       <td>False</td>
       <td>False</td>
     </tr>
   </tbody>
 </table>
-<p>97 rows × 22 columns</p>
+<p>5 rows × 22 columns (illustrative sample)</p>
 </div>
 
 
@@ -3657,97 +2539,97 @@ display(geocode_cache.head())
     <tr>
       <th>0</th>
       <td>v2_result_validation</td>
-      <td>100 CLINCH RIDGE RD|THORN HILL|TN|37881</td>
-      <td>100 Clinch Ridge Rd</td>
-      <td>THORN HILL</td>
+      <td>100 EXAMPLE STREET|EXAMPLE CITY|TN|37001</td>
+      <td>Example Value</td>
+      <td>EXAMPLE CITY</td>
       <td>TN</td>
-      <td>37881</td>
-      <td>100 Clinch Ridge Rd, THORN HILL, TN, 37881</td>
-      <td>-83.267914</td>
-      <td>36.464212</td>
-      <td>86.69</td>
-      <td>Ridge Rd, Sneedville, Tennessee, 37869</td>
-      <td>StreetName</td>
+      <td>37001</td>
+      <td>100 Example Street, EXAMPLE CITY, TN, 37001</td>
+      <td>-86.000000</td>
+      <td>36.000000</td>
+      <td>95.00</td>
+      <td>100 Example Street, Example City, Tennessee, 37001</td>
+      <td>PointAddress</td>
       <td>matched_M</td>
       <td>arcgis.geocoding.geocode</td>
       <td>2026-07-08T17:10:43.204738+00:00</td>
-      <td>{"address": "Ridge Rd, Sneedville, Tennessee, ...</td>
+      <td>{"address": "100 Example Street, Example City, Tennessee, 37001", "location": {"x": -86.000000, "y": 36.000000}, "score": 95.00}</td>
     </tr>
     <tr>
       <th>1</th>
       <td>v2_result_validation</td>
-      <td>101 FIRETOWER DR|COLLINWOOD|TN|38450</td>
-      <td>101 Firetower Dr.</td>
-      <td>COLLINWOOD</td>
+      <td>110 EXAMPLE AVENUE|SAMPLE TOWN|TN|37002</td>
+      <td>Example Value</td>
+      <td>SAMPLE TOWN</td>
       <td>TN</td>
-      <td>38450</td>
-      <td>101 Firetower Dr., COLLINWOOD, TN, 38450</td>
-      <td>-87.742596</td>
-      <td>35.148928</td>
+      <td>37002</td>
+      <td>110 Example Avenue, SAMPLE TOWN, TN, 37002</td>
+      <td>-86.050000</td>
+      <td>36.050000</td>
       <td>100.00</td>
-      <td>101 Fire Tower Dr, Collinwood, Tennessee, 38450</td>
-      <td>PointAddress</td>
+      <td>110 Example Avenue, Sample Town, Tennessee, 37002</td>
+      <td>StreetAddress</td>
       <td>matched_M</td>
       <td>arcgis.geocoding.geocode</td>
       <td>2026-07-08T17:10:43.797947+00:00</td>
-      <td>{"address": "101 Fire Tower Dr, Collinwood, Te...</td>
+      <td>{"address": "110 Example Avenue, Sample Town, Tennessee, 37002", "location": {"x": -86.050000, "y": 36.050000}, "score": 100.00}</td>
     </tr>
     <tr>
       <th>2</th>
       <td>v2_result_validation</td>
-      <td>10150 CORINTH RD|WILDERSVILLE|TN|38388</td>
-      <td>10150 Corinth Rd</td>
-      <td>WILDERSVILLE</td>
+      <td>120 EXAMPLE LANE|SAMPLE TOWN|TN|37002</td>
+      <td>Example Value</td>
+      <td>SAMPLE TOWN</td>
       <td>TN</td>
-      <td>38388</td>
-      <td>10150 Corinth Rd, WILDERSVILLE, TN, 38388</td>
-      <td>-88.276893</td>
-      <td>35.767041</td>
-      <td>100.00</td>
-      <td>10150 Corinth Rd, Wildersville, Tennessee, 38388</td>
+      <td>37002</td>
+      <td>120 Example Lane, SAMPLE TOWN, TN, 37002</td>
+      <td>-86.100000</td>
+      <td>36.100000</td>
+      <td>88.50</td>
+      <td>120 Example Lane, Sample Town, Tennessee, 37002</td>
       <td>PointAddress</td>
       <td>matched_M</td>
       <td>arcgis.geocoding.geocode</td>
       <td>2026-07-08T17:10:44.411247+00:00</td>
-      <td>{"address": "10150 Corinth Rd, Wildersville, T...</td>
+      <td>{"address": "120 Example Lane, Sample Town, Tennessee, 37002", "location": {"x": -86.100000, "y": 36.100000}, "score": 88.50}</td>
     </tr>
     <tr>
       <th>3</th>
       <td>v2_result_validation</td>
-      <td>1050 FIRETOWER LN|LUTTS|TN|38471</td>
-      <td>1050 Firetower Ln</td>
-      <td>LUTTS</td>
+      <td>130 EXAMPLE ROAD|SAMPLE TOWN|TN|37002</td>
+      <td>Example Value</td>
+      <td>SAMPLE TOWN</td>
       <td>TN</td>
-      <td>38471</td>
-      <td>1050 Firetower Ln, LUTTS, TN, 38471</td>
-      <td>-87.919313</td>
-      <td>35.089074</td>
-      <td>98.04</td>
-      <td>1050 Firetower Rd, Lutts, Tennessee, 38471</td>
-      <td>PointAddress</td>
+      <td>37002</td>
+      <td>130 Example Road, SAMPLE TOWN, TN, 37002</td>
+      <td>-86.150000</td>
+      <td>36.150000</td>
+      <td>92.30</td>
+      <td>130 Example Road, Sample Town, Tennessee, 37002</td>
+      <td>StreetName</td>
       <td>matched_M</td>
       <td>arcgis.geocoding.geocode</td>
       <td>2026-07-08T17:10:45.244125+00:00</td>
-      <td>{"address": "1050 Firetower Rd, Lutts, Tenness...</td>
+      <td>{"address": "130 Example Road, Sample Town, Tennessee, 37002", "location": {"x": -86.150000, "y": 36.150000}, "score": 92.30}</td>
     </tr>
     <tr>
       <th>4</th>
       <td>v2_result_validation</td>
-      <td>1084 WESTEL ROAD|ROCKWOOD|TN|37854</td>
-      <td>1084 Westel Road</td>
-      <td>ROCKWOOD</td>
+      <td>140 EXAMPLE DRIVE|SAMPLE TOWN|TN|37003</td>
+      <td>Example Value</td>
+      <td>SAMPLE TOWN</td>
       <td>TN</td>
-      <td>37854</td>
-      <td>1084 Westel Road, ROCKWOOD, TN, 37854</td>
-      <td>-84.743105</td>
-      <td>35.872672</td>
-      <td>100.00</td>
-      <td>1084 Westel Rd, Rockwood, Tennessee, 37854</td>
+      <td>37003</td>
+      <td>140 Example Drive, SAMPLE TOWN, TN, 37003</td>
+      <td>-86.200000</td>
+      <td>36.200000</td>
+      <td>97.10</td>
+      <td>140 Example Drive, Sample Town, Tennessee, 37003</td>
       <td>PointAddress</td>
       <td>matched_M</td>
       <td>arcgis.geocoding.geocode</td>
       <td>2026-07-08T17:10:45.636093+00:00</td>
-      <td>{"address": "1084 Westel Rd, Rockwood, Tenness...</td>
+      <td>{"address": "140 Example Drive, Sample Town, Tennessee, 37003", "location": {"x": -86.200000, "y": 36.200000}, "score": 97.10}</td>
     </tr>
   </tbody>
 </table>
@@ -4183,271 +3065,127 @@ df_geocoded = working.copy()
   <tbody>
     <tr>
       <th>0</th>
-      <td>10000006</td>
-      <td>Holston Mtn Radio Building</td>
-      <td>National Forest 56, ELIZABETHTON, TN, 37643</td>
-      <td>36.382348</td>
-      <td>-82.148698</td>
-      <td>96.42</td>
-      <td>56 Forest Dr, Elizabethton, Tennessee, 37643</td>
-      <td>StreetAddress</td>
+      <td>10000001</td>
+      <td>Example Building A</td>
+      <td>100 Example Street, EXAMPLE CITY, TN, 37001</td>
+      <td>36.000000</td>
+      <td>-86.000000</td>
+      <td>95.00</td>
+      <td>100 Example Street, Example City, Tennessee, 37001</td>
+      <td>PointAddress</td>
       <td>matched_M</td>
-      <td>manual_location_review_unresolved</td>
+      <td></td>
       <td>...</td>
       <td>False</td>
-      <td>56 Forest Dr</td>
-      <td>Elizabethton</td>
-      <td>37643</td>
-      <td>37643</td>
-      <td>56</td>
-      <td>56</td>
+      <td>100 Example Street</td>
+      <td>EXAMPLE CITY</td>
+      <td>37001</td>
+      <td>37001</td>
+      <td>100</td>
+      <td>100</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>10000002</td>
+      <td>Example Building B</td>
+      <td>110 Example Avenue, SAMPLE TOWN, TN, 37002</td>
+      <td>36.050000</td>
+      <td>-86.050000</td>
+      <td>100.00</td>
+      <td>110 Example Avenue, Sample Town, Tennessee, 37002</td>
+      <td>StreetAddress</td>
+      <td>matched_M</td>
+      <td></td>
+      <td>...</td>
+      <td>False</td>
+      <td>110 Example Avenue</td>
+      <td>SAMPLE TOWN</td>
+      <td>37002</td>
+      <td>37002</td>
+      <td>110</td>
+      <td>110</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>10000003</td>
+      <td>Example Building C</td>
+      <td>120 Example Lane, SAMPLE TOWN, TN, 37002</td>
+      <td>36.100000</td>
+      <td>-86.100000</td>
+      <td>88.50</td>
+      <td>120 Example Lane, Sample Town, Tennessee, 37002</td>
+      <td>PointAddress</td>
+      <td>matched_M</td>
+      <td></td>
+      <td>...</td>
+      <td>True</td>
+      <td>120 Example Lane</td>
+      <td>SAMPLE TOWN</td>
+      <td>37002</td>
+      <td>37002</td>
+      <td>120</td>
+      <td>120</td>
       <td>True</td>
       <td>True</td>
       <td>True</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>10010003</td>
-      <td>Carter County Shop</td>
-      <td>2643 Gap Creek Road, HAMPTON, TN, 37658</td>
-      <td>36.260423</td>
-      <td>-82.214202</td>
-      <td>100.00</td>
-      <td>2643 Gap Creek Rd, Hampton, Tennessee, 37658</td>
-      <td>PointAddress</td>
-      <td>matched_M</td>
-      <td>zip_conflict_for_address_city</td>
-      <td>...</td>
-      <td>False</td>
-      <td>2643 Gap Creek Rd</td>
-      <td>Hampton</td>
-      <td>37658</td>
-      <td>37658</td>
-      <td>2643</td>
-      <td>2643</td>
-      <td>True</td>
-      <td>True</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <th>12</th>
-      <td>04000007</td>
-      <td>Hendon Fire Tower</td>
-      <td>Fire Tower Road, GRAYSVILLE, TN, 37338</td>
-      <td>35.448263</td>
-      <td>-85.246788</td>
-      <td>88.27</td>
-      <td>Hendon Fire Tower Rd, Graysville, Tennessee, 3...</td>
+      <td>10000004</td>
+      <td>Example Building D</td>
+      <td>130 Example Road, SAMPLE TOWN, TN, 37002</td>
+      <td>36.150000</td>
+      <td>-86.150000</td>
+      <td>92.30</td>
+      <td>130 Example Road, Sample Town, Tennessee, 37002</td>
       <td>StreetName</td>
       <td>matched_M</td>
-      <td>weak_match_type; manual_location_review_unreso...</td>
+      <td></td>
       <td>...</td>
       <td>False</td>
-      <td>Hendon Fire Tower Rd</td>
-      <td>Graysville</td>
-      <td>37338</td>
-      <td>37338</td>
-      <td></td>
-      <td></td>
-      <td>True</td>
-      <td>True</td>
-      <td>True</td>
+      <td>130 Example Road</td>
+      <td>SAMPLE TOWN</td>
+      <td>37002</td>
+      <td>37002</td>
+      <td>130</td>
+      <td>130</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
     </tr>
     <tr>
-      <th>13</th>
-      <td>04010001</td>
-      <td>Bledsoe SF Smoke House</td>
-      <td>Route 3 Box 180, PIKEVILLE, TN, 37367</td>
-      <td>35.579069</td>
-      <td>-85.145580</td>
-      <td>94.03</td>
-      <td>3rd St, Pikeville, Tennessee, 37367</td>
-      <td>StreetName</td>
-      <td>matched_M</td>
-      <td>weak_match_type; manual_location_review_unreso...</td>
-      <td>...</td>
-      <td>False</td>
-      <td>3rd St</td>
-      <td>Pikeville</td>
-      <td>37367</td>
-      <td>37367</td>
-      <td>3</td>
-      <td></td>
-      <td>True</td>
-      <td>True</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <th>14</th>
-      <td>04010002</td>
-      <td>Bledsoe SF Storm Shelter</td>
-      <td>Route 3 Box 180, PIKEVILLE, TN, 37367</td>
-      <td>35.579069</td>
-      <td>-85.145580</td>
-      <td>94.03</td>
-      <td>3rd St, Pikeville, Tennessee, 37367</td>
-      <td>StreetName</td>
-      <td>matched_M</td>
-      <td>weak_match_type; manual_location_review_unreso...</td>
-      <td>...</td>
-      <td>False</td>
-      <td>3rd St</td>
-      <td>Pikeville</td>
-      <td>37367</td>
-      <td>37367</td>
-      <td>3</td>
-      <td></td>
-      <td>True</td>
-      <td>True</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-    </tr>
-    <tr>
-      <th>363</th>
-      <td>71000015</td>
-      <td>Cookeville District Office</td>
-      <td>390 SOUTH LOWE, SUITE 10, COOKEVILLE, TN, 38501</td>
-      <td>36.153647</td>
-      <td>-85.499045</td>
-      <td>98.84</td>
-      <td>390 S Lowe Ave, Suite 10, Cookeville, Tennesse...</td>
-      <td>Subaddress</td>
-      <td>matched_M</td>
-      <td>geocode_assignment_suspect</td>
-      <td>...</td>
-      <td>True</td>
-      <td>390 S Lowe Ave</td>
-      <td>Suite 10</td>
-      <td>38501</td>
-      <td>38501</td>
-      <td>390</td>
-      <td>390</td>
-      <td>False</td>
-      <td>True</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <th>369</th>
-      <td>71020001</td>
-      <td>Cookeville Tower Storage</td>
-      <td>NONE, COOKEVILLE, TN, 38501</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>no_coordinates; below_score_threshold_or_no_sc...</td>
-      <td>...</td>
-      <td>False</td>
-      <td></td>
-      <td></td>
-      <td>38501</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td>False</td>
-      <td>False</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <th>370</th>
-      <td>71020002</td>
-      <td>Cookeville Tower</td>
-      <td>NONE, COOKEVILLE, TN, 38501</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>no_coordinates; below_score_threshold_or_no_sc...</td>
-      <td>...</td>
-      <td>False</td>
-      <td></td>
-      <td></td>
-      <td>38501</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td>False</td>
-      <td>False</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <th>371</th>
-      <td>72010001</td>
-      <td>Smyrna Shop</td>
-      <td>208 Fire Tower Road, EVANSVILLE, TN, 37332</td>
-      <td>35.580564</td>
-      <td>-84.921875</td>
-      <td>89.27</td>
-      <td>208 Smyrna Firetower Rd, Evensville, Tennessee...</td>
+      <th>4</th>
+      <td>10000005</td>
+      <td>Example Building E</td>
+      <td>140 Example Drive, SAMPLE TOWN, TN, 37003</td>
+      <td>36.200000</td>
+      <td>-86.200000</td>
+      <td>97.10</td>
+      <td>140 Example Drive, Sample Town, Tennessee, 37003</td>
       <td>PointAddress</td>
       <td>matched_M</td>
-      <td>geocode_assignment_suspect</td>
+      <td></td>
       <td>...</td>
-      <td>True</td>
-      <td>208 Smyrna Firetower Rd</td>
-      <td>Evensville</td>
-      <td>37332</td>
-      <td>37332</td>
-      <td>208</td>
-      <td>208</td>
       <td>False</td>
-      <td>True</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <th>372</th>
-      <td>72010002</td>
-      <td>Smyrna Fire Tower</td>
-      <td>208 Fire Tower Road, EVANSVILLE, TN, 37332</td>
-      <td>35.580564</td>
-      <td>-84.921875</td>
-      <td>89.27</td>
-      <td>208 Smyrna Firetower Rd, Evensville, Tennessee...</td>
-      <td>PointAddress</td>
-      <td>matched_M</td>
-      <td>geocode_assignment_suspect</td>
-      <td>...</td>
-      <td>True</td>
-      <td>208 Smyrna Firetower Rd</td>
-      <td>Evensville</td>
-      <td>37332</td>
-      <td>37332</td>
-      <td>208</td>
-      <td>208</td>
+      <td>140 Example Drive</td>
+      <td>SAMPLE TOWN</td>
+      <td>37003</td>
+      <td>37003</td>
+      <td>140</td>
+      <td>140</td>
       <td>False</td>
-      <td>True</td>
-      <td>True</td>
+      <td>False</td>
+      <td>False</td>
     </tr>
   </tbody>
 </table>
-<p>100 rows × 46 columns</p>
+<p>5 rows × 46 columns (illustrative sample)</p>
 </div>
 
 ## 9. Create a Spatially Enabled DataFrame
@@ -4583,105 +3321,17 @@ display(sdf.head())
   </thead>
   <tbody>
     <tr>
-      <th>1</th>
-      <td>10010001</td>
-      <td>Carter County Residence</td>
-      <td>2651 Gap Creek Road</td>
-      <td>HAMPTON</td>
-      <td>CARTER</td>
+      <th>0</th>
+      <td>10000001</td>
+      <td>Example Building A</td>
+      <td>100 Example Street</td>
+      <td>EXAMPLE CITY</td>
+      <td>EXAMPLE COUNTY</td>
       <td>TN</td>
-      <td>37658</td>
-      <td>-82.213546</td>
-      <td>36.260446</td>
-      <td>1400.0</td>
-      <td>Residential</td>
-      <td>Utilized</td>
-      <td>Current Mission Need</td>
-      <td>Long Term 15+ yrs</td>
-      <td>Active</td>
-      <td>arcgis.geocoding.geocode</td>
-      <td></td>
-      <td></td>
-      <td>{"spatialReference": {"wkid": 4326}, "x": -82....</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>10010002</td>
-      <td>Carter County Outbuilding #2</td>
-      <td>2651 Gap Creek Road</td>
-      <td>HAMPTON</td>
-      <td>CARTER</td>
-      <td>TN</td>
-      <td>37658</td>
-      <td>-82.213546</td>
-      <td>36.260446</td>
-      <td>1600.0</td>
-      <td>Warehouse Space</td>
-      <td>Utilized</td>
-      <td>Current Mission Need</td>
-      <td>Long Term 15+ yrs</td>
-      <td>Active</td>
-      <td>arcgis.geocoding.geocode</td>
-      <td></td>
-      <td></td>
-      <td>{"spatialReference": {"wkid": 4326}, "x": -82....</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>01010001</td>
-      <td>Bluebird Storage Building</td>
-      <td>395 Firetower Lane</td>
-      <td>HEISKELL</td>
-      <td>ANDERSON</td>
-      <td>TN</td>
-      <td>37754</td>
-      <td>-84.063614</td>
-      <td>36.139897</td>
-      <td>48.0</td>
-      <td>Warehouse Space</td>
-      <td>Utilized</td>
-      <td>Current Mission Need</td>
-      <td>Long Term 15+ yrs</td>
-      <td>Active</td>
-      <td>arcgis.geocoding.geocode</td>
-      <td></td>
-      <td></td>
-      <td>{"spatialReference": {"wkid": 4326}, "x": -84....</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>01010002</td>
-      <td>Bluebird Shop</td>
-      <td>395 Firetower Lane</td>
-      <td>HEISKELL</td>
-      <td>ANDERSON</td>
-      <td>TN</td>
-      <td>37754</td>
-      <td>-84.063614</td>
-      <td>36.139897</td>
-      <td>800.0</td>
-      <td>Public Safety</td>
-      <td>Utilized</td>
-      <td>Current Mission Need</td>
-      <td>Long Term 15+ yrs</td>
-      <td>Active</td>
-      <td>arcgis.geocoding.geocode</td>
-      <td></td>
-      <td></td>
-      <td>{"spatialReference": {"wkid": 4326}, "x": -84....</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>01010003</td>
-      <td>Bluebird Office</td>
-      <td>395 Firetower Lane</td>
-      <td>HEISKELL</td>
-      <td>ANDERSON</td>
-      <td>TN</td>
-      <td>37754</td>
-      <td>-84.063614</td>
-      <td>36.139897</td>
-      <td>120.0</td>
+      <td>37001</td>
+      <td>-86.000000</td>
+      <td>36.000000</td>
+      <td>600</td>
       <td>Office Space</td>
       <td>Utilized</td>
       <td>Current Mission Need</td>
@@ -4690,7 +3340,95 @@ display(sdf.head())
       <td>arcgis.geocoding.geocode</td>
       <td></td>
       <td></td>
-      <td>{"spatialReference": {"wkid": 4326}, "x": -84....</td>
+      <td>{"spatialReference": {"wkid": 4326}, "x": -86.000000, "y": 36.000000}</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>10000002</td>
+      <td>Example Building B</td>
+      <td>110 Example Avenue</td>
+      <td>SAMPLE TOWN</td>
+      <td>EXAMPLE COUNTY</td>
+      <td>TN</td>
+      <td>37002</td>
+      <td>-86.050000</td>
+      <td>36.050000</td>
+      <td>1400</td>
+      <td>Storage</td>
+      <td>Utilized</td>
+      <td>Current Mission Need</td>
+      <td>Long Term 15+ yrs</td>
+      <td>Active</td>
+      <td>arcgis.geocoding.geocode</td>
+      <td></td>
+      <td></td>
+      <td>{"spatialReference": {"wkid": 4326}, "x": -86.050000, "y": 36.050000}</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>10000003</td>
+      <td>Example Building C</td>
+      <td>120 Example Lane</td>
+      <td>SAMPLE TOWN</td>
+      <td>EXAMPLE COUNTY</td>
+      <td>TN</td>
+      <td>37002</td>
+      <td>-86.100000</td>
+      <td>36.100000</td>
+      <td>1600</td>
+      <td>Residential</td>
+      <td>Utilized</td>
+      <td>Current Mission Need</td>
+      <td>Long Term 15+ yrs</td>
+      <td>Active</td>
+      <td>arcgis.geocoding.geocode</td>
+      <td></td>
+      <td></td>
+      <td>{"spatialReference": {"wkid": 4326}, "x": -86.100000, "y": 36.100000}</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>10000004</td>
+      <td>Example Building D</td>
+      <td>130 Example Road</td>
+      <td>SAMPLE TOWN</td>
+      <td>EXAMPLE COUNTY</td>
+      <td>TN</td>
+      <td>37002</td>
+      <td>-86.150000</td>
+      <td>36.150000</td>
+      <td>1400</td>
+      <td>Shop</td>
+      <td>Utilized</td>
+      <td>Current Mission Need</td>
+      <td>Long Term 15+ yrs</td>
+      <td>Active</td>
+      <td>arcgis.geocoding.geocode</td>
+      <td></td>
+      <td></td>
+      <td>{"spatialReference": {"wkid": 4326}, "x": -86.150000, "y": 36.150000}</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>10000005</td>
+      <td>Example Building E</td>
+      <td>140 Example Drive</td>
+      <td>SAMPLE TOWN</td>
+      <td>SAMPLE COUNTY</td>
+      <td>TN</td>
+      <td>37003</td>
+      <td>-86.200000</td>
+      <td>36.200000</td>
+      <td>48</td>
+      <td>Warehouse Space</td>
+      <td>Utilized</td>
+      <td>Current Mission Need</td>
+      <td>Long Term 15+ yrs</td>
+      <td>Active</td>
+      <td>arcgis.geocoding.geocode</td>
+      <td></td>
+      <td></td>
+      <td>{"spatialReference": {"wkid": 4326}, "x": -86.200000, "y": 36.200000}</td>
     </tr>
   </tbody>
 </table>
@@ -5284,7 +4022,7 @@ else:
                     <div class="item_right"     style="float: none; width: auto; overflow: hidden;">
                         <a href='https://www.arcgis.com/home/item.html?id=' target='_blank'><b>TDF Buildings and Facilities</b>
                         </a>
-                        <br/>Point locations for buildings owned and managed by Tennessee Division of Forestry.<br/><img src='https://www.arcgis.com/home/js/jsapi/esri/css/images/item_type_icons/featureshosted16.png' style="vertical-align:middle;" width=16 height=16>Feature Layer Collection by colin.stiles_tndof
+                        <br/>Point locations for buildings owned and managed by Tennessee Division of Forestry.<br/><img src='https://www.arcgis.com/home/js/jsapi/esri/css/images/item_type_icons/featureshosted16.png' style="vertical-align:middle;" width=16 height=16>Feature Layer Collection by example_user_tdf
                         <br/>Last Modified: July 08, 2026
                         <br/>0 comments, 3 views
                     </div>
